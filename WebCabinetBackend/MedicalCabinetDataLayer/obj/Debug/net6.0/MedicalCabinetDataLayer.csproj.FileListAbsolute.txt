@@ -1,0 +1,14 @@
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\bin\Debug\net6.0\MedicalCabinetDataLayer.deps.json
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\bin\Debug\net6.0\MedicalCabinetDataLayer.runtimeconfig.json
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\bin\Debug\net6.0\MedicalCabinetDataLayer.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\bin\Debug\net6.0\MedicalCabinetDataLayer.pdb
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.csproj.AssemblyReference.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.AssemblyInfoInputs.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.AssemblyInfo.cs
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.csproj.CoreCompileInputs.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\refint\MedicalCabinetDataLayer.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.pdb
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\MedicalCabinetDataLayer.genruntimeconfig.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetDataLayer\obj\Debug\net6.0\ref\MedicalCabinetDataLayer.dll

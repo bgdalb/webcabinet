@@ -1,0 +1,17 @@
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\bin\Debug\net6.0\MedicalCabinetBusinessLogic.deps.json
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\bin\Debug\net6.0\MedicalCabinetBusinessLogic.runtimeconfig.json
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\bin\Debug\net6.0\MedicalCabinetBusinessLogic.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\bin\Debug\net6.0\MedicalCabinetBusinessLogic.pdb
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.csproj.AssemblyReference.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.AssemblyInfoInputs.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.AssemblyInfo.cs
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\refint\MedicalCabinetBusinessLogic.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.pdb
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.genruntimeconfig.cache
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\ref\MedicalCabinetBusinessLogic.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\bin\Debug\net6.0\MedicalCabinetDataLayer.dll
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\bin\Debug\net6.0\MedicalCabinetDataLayer.pdb
+C:\Users\bogda\OneDrive\Desktop\Licenta\MedicalCabinetBusinessLogic\obj\Debug\net6.0\MedicalCabinetBusinessLogic.csproj.CopyComplete

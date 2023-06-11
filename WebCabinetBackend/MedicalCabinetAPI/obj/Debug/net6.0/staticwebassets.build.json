@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "+AGG4ubEzKa0FHLK/ahN3/Re/YViHMP3gyCkm6cMkp4=",
+  "Source": "MedicalCabinetAPI",
+  "BasePath": "_content/MedicalCabinetAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
