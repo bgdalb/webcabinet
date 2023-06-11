@@ -3558,11 +3558,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
+      "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
       "projectName": "MedicalCabinetDataLayer",
-      "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
+      "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
       "packagesPath": "C:\\Users\\bogda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\obj\\",
+      "outputPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bogda\\AppData\\Roaming\\NuGet\\NuGet.Config",

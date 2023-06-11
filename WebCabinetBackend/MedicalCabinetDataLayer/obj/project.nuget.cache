@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Smi4cwirp32TjapglV8MeE7C9zh4spRuHPNW0gRoJx2DHiJgJEvSBVPe/T07iEfZjpvp1+YkFWRmff8TGKebPg==",
+  "dgSpecHash": "j0embBFXjbws4Z6g7r1yuvPiwF5gIy26WPZLen+iGF+OT5rrM63QyhWEQqJjRnWTV0t6EN0fZlJqBeBEU3EjOQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
+  "projectFilePath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bogda\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bogda\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

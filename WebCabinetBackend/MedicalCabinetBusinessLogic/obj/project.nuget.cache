@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rF1cjZTgM8IxlCeLIJ4wEvEE5lsJC2jgwsEUcPeBX0N6OQMNfAReKj9A+AJJ2ywo9V18t7WgG4ijym6E41Aqvg==",
+  "dgSpecHash": "HT3RgMLHU/8XjruQIf7+nlC6unVvf05kwNXJPt2vCVjs0nri/1s6Gh2O86d8KEOhKp9yXp1w9Kgb4J48fPASVg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bogda\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bogda\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

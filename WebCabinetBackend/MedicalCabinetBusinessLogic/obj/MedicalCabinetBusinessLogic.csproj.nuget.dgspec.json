@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj": {}
+    "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj": {
+    "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj",
         "projectName": "MedicalCabinetBusinessLogic",
-        "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj",
+        "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj",
         "packagesPath": "C:\\Users\\bogda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\obj\\",
+        "outputPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bogda\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj": {
-                "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj"
+              "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj": {
+                "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj"
               }
             }
           }
@@ -79,14 +79,14 @@
         }
       }
     },
-    "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj": {
+    "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
         "projectName": "MedicalCabinetDataLayer",
-        "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
+        "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj",
         "packagesPath": "C:\\Users\\bogda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\obj\\",
+        "outputPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bogda\\AppData\\Roaming\\NuGet\\NuGet.Config",

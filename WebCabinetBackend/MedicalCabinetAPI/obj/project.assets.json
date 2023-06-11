@@ -3812,11 +3812,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetAPI\\MedicalCabinetAPI.csproj",
+      "projectUniqueName": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetAPI\\MedicalCabinetAPI.csproj",
       "projectName": "MedicalCabinetAPI",
-      "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetAPI\\MedicalCabinetAPI.csproj",
+      "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetAPI\\MedicalCabinetAPI.csproj",
       "packagesPath": "C:\\Users\\bogda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetAPI\\obj\\",
+      "outputPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bogda\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3834,11 +3834,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj"
+            "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetBusinessLogic\\MedicalCabinetBusinessLogic.csproj"
             },
-            "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj": {
-              "projectPath": "C:\\Users\\bogda\\OneDrive\\Desktop\\Licenta\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj"
+            "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj": {
+              "projectPath": "C:\\Users\\bogda\\OneDrive\\Documente\\GitHub\\webcabinet\\WebCabinetBackend\\MedicalCabinetDataLayer\\MedicalCabinetDataLayer.csproj"
             }
           }
         }
