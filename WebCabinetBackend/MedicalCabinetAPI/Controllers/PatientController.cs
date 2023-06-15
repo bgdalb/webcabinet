@@ -1,5 +1,6 @@
 ﻿using MedicalCabinetBusinessLogic.DTOs;
 using MedicalCabinetBusinessLogic.Services;
+using MedicalCabinetDataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,14 @@ namespace MedicalCabinetAPI.Controllers
             {
                 return BadRequest("Patiet cannot be added");
             }
+
+            return Ok(result);
+        }
+
+        [HttpGet("/get-all-patients")]
+        public ActionResult<List<Patient>> GetAll()
+        {
+            var result = patientService.GetAll();
 
             return Ok(result);
         }
