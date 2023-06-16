@@ -24,22 +24,22 @@ namespace MedicalCabinetDataLayer.Migrations
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.Appointment", b =>
                 {
-                    b.Property<long>("AppointmentId")
+                    b.Property<long?>("AppointmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("AppointmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("AppointmentId"));
 
-                    b.Property<DateTime>("AppointmentDate")
+                    b.Property<DateTime?>("AppointmentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("DoctorId")
+                    b.Property<long?>("DoctorId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PatientId")
+                    b.Property<long?>("PatientId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ServiceId")
+                    b.Property<long?>("ServiceId")
                         .HasColumnType("bigint");
 
                     b.HasKey("AppointmentId");
@@ -55,56 +55,54 @@ namespace MedicalCabinetDataLayer.Migrations
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.Doctor", b =>
                 {
-                    b.Property<long>("DoctorId")
+                    b.Property<long?>("DoctorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("DoctorId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("DoctorId"));
+
+                    b.Property<string>("DoctorTitle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FamilyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("DoctorId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.MedicalHistory", b =>
                 {
-                    b.Property<long>("MedicalHistoryId")
+                    b.Property<long?>("MedicalHistoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("MedicalHistoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("MedicalHistoryId"));
 
                     b.Property<string>("FileDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FileName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FilePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("PatientId")
+                    b.Property<long?>("PatientId")
                         .HasColumnType("bigint");
 
                     b.HasKey("MedicalHistoryId");
@@ -116,52 +114,48 @@ namespace MedicalCabinetDataLayer.Migrations
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.Patient", b =>
                 {
-                    b.Property<long>("PatientId")
+                    b.Property<long?>("PatientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PatientId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("PatientId"));
 
                     b.Property<string>("CNP")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FamilyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("PatientId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.Role", b =>
                 {
-                    b.Property<long>("RoleId")
+                    b.Property<long?>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("RoleId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("RoleId"));
 
                     b.Property<string>("RoleName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
@@ -171,20 +165,22 @@ namespace MedicalCabinetDataLayer.Migrations
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.Service", b =>
                 {
-                    b.Property<long>("ServiceId")
+                    b.Property<long?>("ServiceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ServiceId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("ServiceId"));
 
-                    b.Property<long>("DoctorId")
+                    b.Property<long?>("DoctorId")
                         .HasColumnType("bigint");
 
-                    b.Property<TimeSpan>("EstimatedDuration")
+                    b.Property<TimeSpan?>("EstimatedDuration")
                         .HasColumnType("time");
 
+                    b.Property<string>("PicturePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ServiceName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ServiceId");
@@ -196,25 +192,22 @@ namespace MedicalCabinetDataLayer.Migrations
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.User", b =>
                 {
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("UserId"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PicturePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("RoleId")
+                    b.Property<long?>("RoleId")
                         .HasColumnType("bigint");
 
                     b.HasKey("UserId");
@@ -229,20 +222,17 @@ namespace MedicalCabinetDataLayer.Migrations
                     b.HasOne("MedicalCabinetDataLayer.Entities.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("MedicalCabinetDataLayer.Entities.Patient", "Patient")
                         .WithMany("Appointments")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("MedicalCabinetDataLayer.Entities.Service", "Service")
                         .WithMany("Appointments")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Doctor");
 
@@ -256,8 +246,7 @@ namespace MedicalCabinetDataLayer.Migrations
                     b.HasOne("MedicalCabinetDataLayer.Entities.User", "User")
                         .WithOne("Doctor")
                         .HasForeignKey("MedicalCabinetDataLayer.Entities.Doctor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
@@ -267,8 +256,7 @@ namespace MedicalCabinetDataLayer.Migrations
                     b.HasOne("MedicalCabinetDataLayer.Entities.Patient", "Patient")
                         .WithMany("MedicalHistories")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Patient");
                 });
@@ -278,8 +266,7 @@ namespace MedicalCabinetDataLayer.Migrations
                     b.HasOne("MedicalCabinetDataLayer.Entities.User", "User")
                         .WithOne("Patient")
                         .HasForeignKey("MedicalCabinetDataLayer.Entities.Patient", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
@@ -288,9 +275,7 @@ namespace MedicalCabinetDataLayer.Migrations
                 {
                     b.HasOne("MedicalCabinetDataLayer.Entities.Doctor", "Doctor")
                         .WithMany("Services")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DoctorId");
 
                     b.Navigation("Doctor");
                 });
@@ -299,9 +284,7 @@ namespace MedicalCabinetDataLayer.Migrations
                 {
                     b.HasOne("MedicalCabinetDataLayer.Entities.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
                 });
@@ -332,11 +315,9 @@ namespace MedicalCabinetDataLayer.Migrations
 
             modelBuilder.Entity("MedicalCabinetDataLayer.Entities.User", b =>
                 {
-                    b.Navigation("Doctor")
-                        .IsRequired();
+                    b.Navigation("Doctor");
 
-                    b.Navigation("Patient")
-                        .IsRequired();
+                    b.Navigation("Patient");
                 });
 #pragma warning restore 612, 618
         }

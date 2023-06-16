@@ -1,0 +1,22 @@
+ <!-- Navbar Start -->
+ <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a href=""  class="navbar-brand p-0">
+        <h1 class="m-0 text-primary"><span class="heart-pulse">
+            <i class="fas fa-heartbeat"></i>
+          </span>              
+            {{nameOfTheSite}}</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a routerLink="" (click)="scrollToSection('header-carousel')" class="nav-item nav-link custom-link">Acasă</a>
+
+        </div>
+
+        <a routerLink="/registration" class="btn btn-primary py-2 px-4 ms-3">Înregistrare</a>
+
+    </div>
+  </nav>
+  <!-- Navbar End -->

@@ -12,6 +12,8 @@ namespace MedicalCabinetDataLayer.Entities
         public long? ServiceId { get; set; }
         public string? ServiceName { get; set; }
         public TimeSpan? EstimatedDuration { get; set; }
+
+        public string? PicturePath { get; set; }
         public long? DoctorId { get; set; }
 
         public Doctor? Doctor { get; set; }

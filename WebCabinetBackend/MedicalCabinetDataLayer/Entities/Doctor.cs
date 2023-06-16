@@ -14,6 +14,7 @@ namespace MedicalCabinetDataLayer.Entities
         public string? Surname { get; set; }
         public string? Telephone { get; set; }
         public long? UserId { get; set; }
+        public string? DoctorTitle { get; set; }
 
         public User? User { get; set; }
         public ICollection<Service>? Services { get; set; }

@@ -15,7 +15,11 @@ import { HomeTeamComponent } from './home-team/home-team.component';
 import { ScrollService } from './scroll.service';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { HomeComponent } from './home/home.component';
-import { RegistrationNavbarComponent } from './registration-navbar/registration-navbar.component';
+import { RegistrationNavigationbarComponent } from './registration-navigationbar/registration-navigationbar.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { LoginComponent } from './login/login.component';
+import { LoginNavigationbarComponent } from './login-navigationbar/login-navigationbar.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { RegistrationNavbarComponent } from './registration-navbar/registration-
     HomeTeamComponent,
     HomeFooterComponent,
     HomeComponent,
-    RegistrationNavbarComponent,
+    RegistrationNavigationbarComponent,
+    RegistrationFormComponent,
+    LoginComponent,
+    LoginNavigationbarComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
