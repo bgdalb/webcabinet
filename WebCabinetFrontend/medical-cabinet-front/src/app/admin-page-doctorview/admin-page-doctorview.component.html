@@ -1,0 +1,64 @@
+<div class="container wow zoomIn">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="patient-list">
+          <input type="text" class="form-control" placeholder="Caută după nume" (input)="filterDoctors($event)">
+          <div class="text-center mt-3">
+            <button class="btn btn-success" >
+              <i class="fas fa-plus"></i> Add New Doctor
+            </button>
+          <div *ngIf="filteredDoctors; else allDoctors">
+            <div *ngFor="let doctor of filteredDoctors" class="card patient-card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="patient-photo">
+                    <img [src]="doctor.photo" alt="Doctor Photo" class="img-fluid">
+                  </div>
+                  <div class="patient-details ml-3">
+                    <h4>{{ doctor.name }} {{ doctor.surname }}</h4>
+                    <p>Numar de telefon: {{ doctor.phoneNumber }}</p>
+                    <p>Email: {{ doctor.email }}</p>
+    
+                    <div class="d-flex">
+                      <button class="btn btn-primary mr-2" (click)="editDoctor(doctor)">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="btn btn-danger" (click)="deleteDoctor(doctor)">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <ng-template #allDoctors>
+            <div *ngFor="let doctor of doctors" class="card patient-card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="patient-photo">
+                    <img [src]="doctor.photo" alt="Doctor Photo" class="img-fluid">
+                  </div>
+                  <div class="patient-details ml-3">
+                    <h4>{{ doctor.name }} {{ doctor.surname }}</h4>
+                    <p>Numar de telefon: {{ doctor.phoneNumber }}</p>
+                    <p>Email: {{ doctor.email }}</p>
+                    <div class="d-flex">
+                      <button class="btn btn-primary mr-4" (click)="editDoctor(doctor)">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <h2>&nbsp;</h2>
+                      <button class="btn btn-danger" (click)="deleteDoctor(doctor)">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>

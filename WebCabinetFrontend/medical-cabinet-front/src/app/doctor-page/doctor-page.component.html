@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+
+</head>
+
+
+
+<body>
+    <app-home-topbar></app-home-topbar>
+    <app-doctor-page-navigationbar [showPatientView]="showPatientView" (toggleView)="toggleView($event)"></app-doctor-page-navigationbar>
+    <div *ngIf="showPatientView">
+        <app-doctor-page-patientview></app-doctor-page-patientview>
+      </div>
+    
+      <div *ngIf="!showPatientView">
+        <app-doctor-page-calendar></app-doctor-page-calendar>
+      </div>
+
+</body>
+
+
+
+ <router-outlet></router-outlet>
+
+ 
+  
+
+</html>

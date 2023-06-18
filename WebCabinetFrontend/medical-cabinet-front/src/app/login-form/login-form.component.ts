@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class LoginFormComponent {
 
+  constructor(private router: Router) {}
+
+  navigateToDestination(): void {
+    this.router.navigate(['/doctor-page']);
+
+  }
 }

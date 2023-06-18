@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">&nbsp;</h2>
+  <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Calendarul doctorului {{ selectedDoctor }}</h2>
+  <div class="calendar" style="padding: 10px;">
+    <div class="header">
+      <button class="btn btn-link" (click)="previousDay()">Ziua precedentă</button>
+      <h2>{{ currentDate | date: 'dd/MM/yyyy' }}</h2>
+      <button class="btn btn-link" (click)="nextDay()">Ziua următoare</button>
+    </div>
+    <div class="container">
+      <div class="hours" style="height: 250px;">
+        <div class="hour flex-grow-1 hour-width container clickable" *ngFor="let hour of hours" [class.booked]="isTimeBooked(hour)" [class.unbooked]="!isTimeBooked(hour)" (click)="selectTimeSlot(hour, currentDate)">
+          <span class="hour-text">{{ hour }}:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">&nbsp;</h2>
+
+<div class="container">
+  
+<div *ngIf="selected_date">
+  <div class="row justify-content-center">
+    <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Ai ales serviciul {{selectedService}} de la doctorul {{selectedDoctor}} pe {{ selected_date | date: 'yyyy-MM-dd' }} la ora {{ selected_hour }}:00 </h2>
+  <button class="btn btn-link" (click)="doSomething()">Confirmă și trimite programarea</button>
+</div>
+</div>
+</div>

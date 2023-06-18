@@ -1,0 +1,73 @@
+.calendar {
+   
+    padding: 10px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .days {
+    display: flex;
+  }
+  
+  .day {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+  }
+  
+  .date {
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .booked {
+    background-color: red;
+    color: white;
+    border: 1px solid #000000; /* Set border width, style, and color */
+
+  }
+
+  .hour-text {
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .unbooked {
+    background-color: green;
+    color: white;
+    border: 1px solid #000000; /* Set border width, style, and color */
+
+  }
+  
+  .hour-width
+  {
+    width: 500px;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .my-margin-left {
+    margin-left: 10rem;
+  }
+
+  .my-margin-right {
+    margin-right: 10rem;
+  }
+

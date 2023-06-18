@@ -1,0 +1,28 @@
+<div *ngIf="selectedPatient" class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <div class="card">
+          <img [src]="selectedPatient.photo" alt="Patient Photo" class="card-img-top rounded-circle mx-auto" style="width: 400px; height: 400px;">
+          <div class="card-body">
+            <h4 class="card-title">{{ selectedPatient.name }} {{ selectedPatient.surname }}</h4>
+  
+            <!-- Add new file form -->
+            <form (submit)="addNewFile()" class="d-flex flex-column align-items-center">
+              <label class="custom-file-upload">
+                <input type="file" (change)="onFileSelected($event)" accept=".pdf, .doc, .docx">
+                <i class="fas fa-cloud-upload-alt"></i> <span>{{ newFile ? newFile : 'Choose File' }}</span>
+              </label>
+              <button type="submit" class="btn btn-primary mt-3">Add</button>
+            </form>
+  
+            <!-- Display patient details -->
+            <h5>Istoric medical:</h5>
+            <ul class="list-group">
+              <li *ngFor="let file of selectedPatient.medicalHistory" class="list-group-item clickable" (click)="viewFile(file)">{{ file }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

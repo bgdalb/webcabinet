@@ -1,0 +1,58 @@
+<div class="container wow zoomIn">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="patient-list">
+          <input type="text" class="form-control" placeholder="Caută după nume" (input)="filterServices($event)">
+          <div *ngIf="filteredServices; else allServices">
+            <div *ngFor="let service of filteredServices" class="card patient-card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="patient-photo">
+                    <img [src]="service.photo" alt="service Photo" class="img-fluid">
+                  </div>
+                  <div class="patient-details ml-3">
+                    <h4>{{ service.name }}</h4>
+                    <p>Descriere: {{ service.description }}</p>
+    
+                    <div class="d-flex">
+                      <button class="btn btn-primary mr-2" (click)="editService(service)">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <h2>&nbsp;</h2>
+                      <button class="btn btn-danger" (click)="deleteService(service)">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <ng-template #allServices>
+            <div *ngFor="let service of services" class="card patient-card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="patient-photo">
+                    <img [src]="service.photo" alt="service Photo" class="img-fluid">
+                  </div>
+                  <div class="patient-details ml-3">
+                    <h4>{{ service.name }}</h4>
+                    <p>Descriere: {{ service.description }}</p>
+                    <div class="d-flex">
+                      <button class="btn btn-primary mr-4" (click)="editService(service)">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="btn btn-danger" (click)="deleteService(service)">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>

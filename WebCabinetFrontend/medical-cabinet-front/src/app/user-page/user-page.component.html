@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+
+</head>
+
+
+
+<body>
+    <app-home-topbar></app-home-topbar>
+    <app-user-page-navigationbar></app-user-page-navigationbar>
+    <div *ngIf="!appointmentSent">
+        <app-user-page-form (doctorServiceSelected)="userFormDoctorServiceSelected($event)"></app-user-page-form>
+        <app-user-page-calendar (appointmentSent)="handleAppointmentSent()" *ngIf="showCalendar" [selectedDoctor]="selectedDoctor" [selectedService]="selectedService"></app-user-page-calendar>
+      </div>
+   
+      <div *ngIf="appointmentSent">
+            <div class = "container">
+            <div class="row justify-content-center">
+              <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Rezervarea a fost făcută cu succes.</h2>
+            <button class="btn btn-link" (click)="goBackToAppointment()">Fă-ți altă rezervare</button>
+          </div>
+      </div>
+    </div>
+
+</body>
+
+
+
+ <router-outlet></router-outlet>
+
+ 
+  
+
+</html>

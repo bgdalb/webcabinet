@@ -1,0 +1,46 @@
+<div class="container wow zoomIn">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="patient-list">
+          <input type="text" class="form-control" placeholder="Caută după nume" (input)="filterPatients($event)">
+          <div *ngIf="filteredPatients; else allPatients">
+            <div *ngFor="let patient of filteredPatients" class="card patient-card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="patient-photo">
+                    <img [src]="patient.photo" alt="Patient Photo" class="img-fluid">
+                  </div>
+                  <div class="patient-details ml-3">
+                    <h4>{{ patient.name }} {{ patient.surname }}</h4>
+                    <p>Numar de telefon: {{ patient.phoneNumber }}</p>
+                    <p>Email: {{ patient.email }}</p>
+                    <p>CNP: {{ patient.cnp }}</p>
+                    <button class="btn btn-primary" (click)="viewMedicalHistory(patient)">Vezi istoric medical</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #allPatients>
+            <div *ngFor="let patient of patients" class="card patient-card mb-3">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="patient-photo">
+                    <img [src]="patient.photo" alt="Patient Photo" class="img-fluid">
+                  </div>
+                  <div class="patient-details ml-3">
+                    <h4>{{ patient.name }} {{ patient.surname }}</h4>
+                    <p>Numar de telefon: {{ patient.phoneNumber }}</p>
+                    <p>Email: {{ patient.email }}</p>
+                    <p>CNP: {{ patient.cnp }}</p>
+                    <button class="btn btn-primary" (click)="viewMedicalHistory(patient)">Vezi istoric medical</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  
