@@ -52,5 +52,24 @@ namespace MedicalCabinetDataLayer.Repositories
         {
             return GetPatientRecords().ToList();
         }
+
+        public bool CheckExistingCNP(string cnp)
+        {
+            var result = dbContext.Patients
+                .Any(p => p.CNP == cnp);
+
+            return result;
+
+
+        }
+
+        public Patient GetPatientByUserID(long id)
+        {
+            var result = dbContext.Patients
+                .Where(p => p.UserId == id)
+                   .FirstOrDefault();
+
+            return result;
+        }
     }
 }

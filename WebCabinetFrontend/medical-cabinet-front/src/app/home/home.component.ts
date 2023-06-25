@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PatientService } from '../patient-service.service';
+import { Patient } from '../models/entities/patient';
+import { UserServiceService } from '../user-service.service';
 
 
 
@@ -9,6 +12,11 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
+  constructor(){
+  }
+
+  ngOnInit(): void {
+  }
 }

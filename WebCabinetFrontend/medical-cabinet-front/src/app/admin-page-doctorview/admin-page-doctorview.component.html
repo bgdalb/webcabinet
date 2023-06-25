@@ -3,10 +3,6 @@
       <div class="col-md-6 offset-md-3">
         <div class="patient-list">
           <input type="text" class="form-control" placeholder="Caută după nume" (input)="filterDoctors($event)">
-          <div class="text-center mt-3">
-            <button class="btn btn-success" >
-              <i class="fas fa-plus"></i> Add New Doctor
-            </button>
           <div *ngIf="filteredDoctors; else allDoctors">
             <div *ngFor="let doctor of filteredDoctors" class="card patient-card mb-3">
               <div class="card-body">

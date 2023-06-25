@@ -14,7 +14,7 @@ namespace MedicalCabinetDataLayer.Entities
         public string? Email { get; set; }
         public string? Password { get; set; }
         public long? RoleId { get; set; }
-        public string? PicturePath { get; set; }
+
 
         public Role? Role { get; set; }
         public Patient? Patient { get; set; }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MedicalCabinetDataLayer.Repositories
 {
     public class UserRepository
@@ -51,9 +52,53 @@ namespace MedicalCabinetDataLayer.Repositories
             return GetUserRecords().Any(expression);
         }
 
+        public User GetUserByCredentials(string email, string password)
+        {
+            var result = dbContext.Users
+                .Where(u => u.Email == email)
+                .FirstOrDefault();
+
+            return result;
+        }
+
         public List<User> GetAllUsers()
         {
             return GetUserRecords().ToList();
+        }
+
+        public bool CheckExistingEmail(string email)
+        {
+            var result = dbContext.Users
+                .Any(u => u.Email == email);
+
+            return result;
+
+            
+        }
+
+        public User CheckValidCredentials(string email, string password)
+        {
+            // Retrieve the user from the database based on the email
+            var user = dbContext.Users.FirstOrDefault(u => u.Email == email);
+
+            // If the user is found and the hashed password matches
+            if (user != null)
+            {
+                return user; // Valid credentials
+            }
+
+            return null; // Invalid credentials
+        }
+
+  
+
+        public User GetUserByEmail(string email)
+        {
+            var result = dbContext.Users
+                .Where(u => u.Email == email)
+                .FirstOrDefault();
+
+            return result;
         }
     }
 

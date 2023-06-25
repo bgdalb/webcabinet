@@ -1,38 +1,37 @@
 <div class="container mt-4 wow zoomIn" id="appointmentform">
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <div class="appointment-form text-center" style="width: 600px;">
-            <h4 class="my-0"> &nbsp;</h4>
-          <h2 class="my-0" style="margin-top: 20px; margin-bottom: 30px;">Programează-te</h2>
-          <h6 class="my-0"> &nbsp;</h6>
-          <form [ngClass]="{ 'form-disabled': formDisabled }">
-            <div class="form-group">
-                <div class="updated">
-                    <h1 for="doctor" class="form-text">Alege-ți doctorul:</h1>
-                </div>
-              <div class="d-flex flex-column align-items-center">
-                <select id="doctor" class="form-control thinner-select form-text" #doctorSelect (change)="selectedDoctor = doctorSelect.value" [disabled]="formDisabled">
-                  <option *ngFor="let doctor of doctors" [value]="doctor">{{ doctor }}</option>
-                </select>
-              </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="appointment-form text-center" style="width: 600px;">
+        <h4 class="my-0">&nbsp;</h4>
+        <h2 class="my-0" style="margin-top: 20px; margin-bottom: 30px;">Programează-te</h2>
+        <h6 class="my-0">&nbsp;</h6>
+        <form [ngClass]="{ 'form-disabled': formDisabled }">
+          <div class="form-group">
+            <div class="updated">
+              <label for="doctor" class="form-text">Alege-ți doctorul:</label>
             </div>
-            <div class="form-group">
-                <div class="updated">
-                <h1 for="service" class="form-text">Alege-ți serviciul:</h1>
+            <div class="d-flex flex-column align-items-center">
+              <select id="doctor" name="doctor" class="form-control thinner-select form-text" [(ngModel)]="selectedDoctor" (ngModelChange)="filterServices()" [disabled]="formDisabled">
+                <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{ doctor.name }} {{doctor.familyName}}</option>
+              </select>
             </div>
-              <div class="d-flex flex-column align-items-center">
-                <select id="service" class="form-control thinner-select" #serviceSelect (change)="selectedService = serviceSelect.value" [disabled]="formDisabled">
-                  <option *ngFor="let service of services" [value]="service">{{ service }}</option>
-                </select>
-                <h6 class="my-0"> &nbsp;</h6>
-                <h6 class="form-text">Doctor selectat: {{ selectedDoctor }}</h6>
-                <h6 class="form-text">Serviciu selectat: {{ selectedService }}</h6>
-              </div>
+          </div>
+          <div class="form-group">
+            <div class="updated">
+              <label for="service" class="form-text">Alege-ți serviciul:</label>
             </div>
-            <button class="btn btn-primary" (click)="onButtonClicked()" [disabled]="formDisabled" [ngClass]="{ 'disabled': formDisabled }" (click)="disableForm()">Confirmă selecția</button>
-          </form>
-        </div>
+            <div class="d-flex flex-column align-items-center">
+              <select id="service" name="service" class="form-control thinner-select" [(ngModel)]="selectedService" [disabled]="formDisabled">
+                <option *ngFor="let service of filteredServices" [ngValue]="service">{{ service.serviceName }} ({{service.estimatedDuration}})</option>
+              </select>
+              <h6 class="my-0">&nbsp;</h6>
+              <h6 class="form-text">Doctor selectat: {{ selectedDoctor.familyName }} {{ selectedDoctor.name }}</h6>
+              <h6 class="form-text">Serviciu selectat: {{ selectedService.serviceName }}</h6>
+            </div>
+          </div>
+          <button class="btn btn-primary" (click)="onButtonClicked()" [disabled]="formDisabled" [ngClass]="{ 'disabled': formDisabled }" (click)="disableForm()">Confirmă selecția</button>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

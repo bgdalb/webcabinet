@@ -33,7 +33,7 @@ namespace MedicalCabinetBusinessLogic.Services
             var patient = new Patient
             {
                 FamilyName = payload.FamilyName,
-                Surname = payload.Surname,
+                Name = payload.Surname,
                 Telephone = payload.Telephone,
                 CNP = payload.CNP,
                 DateOfBirth = payload.DateOfBirth,
@@ -46,6 +46,19 @@ namespace MedicalCabinetBusinessLogic.Services
 
             return payload;
         }
+
+        public bool CheckExistingCNP(string cnp)
+        {
+            var result = unitOfWork.Patients.CheckExistingCNP(cnp);
+            return result;
+        }
+
+        public Patient GetPatientByUserId(long UserID)
+        {
+            var result = unitOfWork.Patients.GetPatientByUserID(UserID);
+            return result;
+        }
+
     }
 }
 

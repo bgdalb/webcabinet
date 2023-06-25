@@ -43,5 +43,12 @@ namespace MedicalCabinetBusinessLogic.Services
 
             return payload;
         }
+
+
+        public List<Service> GetServicesByDoctorID(long DoctorID)
+        {
+            var result = unitOfWork.Services.GetServicesByDoctorId(DoctorID);
+            return result;
+        }
     }
 }

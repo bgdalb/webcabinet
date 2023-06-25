@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +39,9 @@ import { AdminPageDoctorviewComponent } from './admin-page-doctorview/admin-page
 import { AdminPageServiceviewComponent } from './admin-page-serviceview/admin-page-serviceview.component';
 import { AdminPageAppointmentviewComponent } from './admin-page-appointmentview/admin-page-appointmentview.component';
 import { AdminPageEditpatientComponent } from './admin-page-editpatient/admin-page-editpatient.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
+import { RegistrationSuccesBlockComponent } from './registration-succes-block/registration-succes-block.component';
 
 @NgModule({
   declarations: [
@@ -71,11 +77,17 @@ import { AdminPageEditpatientComponent } from './admin-page-editpatient/admin-pa
     AdminPageDoctorviewComponent,
     AdminPageServiceviewComponent,
     AdminPageAppointmentviewComponent,
-    AdminPageEditpatientComponent
+    AdminPageEditpatientComponent,
+    RegistrationSuccessComponent,
+    RegistrationSuccesBlockComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [ScrollService],
   bootstrap: [AppComponent]

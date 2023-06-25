@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AppointmentService } from '../appointment.service';
+import { firstValueFrom } from 'rxjs';
+import { ServicesService } from '../services.service';
 
 
 @Component({
@@ -10,23 +13,32 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class UserPageCalendarComponent {
 
+  appointmentsOfThisDoctor : Appointment[] = [];
+  
+  servicesOfThisDoctor : Service[] = [];
   currentDate: Date = new Date();
   days: Date[] = [];
   hours: number[] = [];
   bookedTimeSlots: number[] = [9, 12, 13]; // Example: booked time slots
   selected_hour!: number;
   selected_date!: Date;
-  @Input() selectedDoctor!: string;
-  @Input() selectedService!: string;
+  @Input() selectedDoctor!: Doctor;
+  @Input() selectedService!: Service;
   @Output() appointmentSent: EventEmitter<void> = new EventEmitter<void>();
 
-  
+  workingHours = {
+    start: 8, // Start hour of the working day
+    end: 16, // End hour of the working day
+  };
 
 
-  constructor() {}
+  constructor(private appointmentService: AppointmentService, private servicesService : ServicesService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.appointmentsOfThisDoctor = await firstValueFrom(this.appointmentService.getAllAppointmentsByDoctorId(this.selectedDoctor.doctorId));
+    this.servicesOfThisDoctor = await firstValueFrom(this.servicesService.getAllServicesByDoctorId(this.selectedDoctor.doctorId));
     this.updateHours();
+    console.log(this.appointmentsOfThisDoctor);
   }
 
   updateHours() {
@@ -74,22 +86,36 @@ export class UserPageCalendarComponent {
 
   selectTimeSlot(hour: number, currentDate: Date) {
     if (!this.isTimeBooked(hour)) {
-      // Handle the time slot selection logic for non-booked slots
-      console.log('Selected time slot:', hour);
-      this.selected_hour = hour;
-      const selectedDate = new Date(currentDate);
-      selectedDate.setHours(hour);
-      selectedDate.setMinutes(0);
-      selectedDate.setSeconds(0);
-      console.log('Selected day :', selectedDate);
-      this.selected_date = selectedDate;
-      console.log('Selected doctor :', this.selectedDoctor);
-      console.log('Selected service :', this.selectedService);
-
-
-      
+      const selectedServiceDuration = this.selectedService.estimatedDuration;
+      const durationParts = selectedServiceDuration.split(':');
+      const durationHours = parseInt(durationParts[0]);
+  
+      // Get the end hour based on the estimated duration and selected hour
+      const endHour = hour + durationHours;
+  
+      // Check if the time slot is within the working hours of the day
+      const isWithinWorkingHours = endHour <= this.workingHours.end + 1;
+  
+      // Check if the selected time slot overlaps with existing booked hours
+      const isOverlap = this.bookedTimeSlots.some(bookedHour => (bookedHour >= hour && bookedHour < endHour));
+  
+      if (!isOverlap && isWithinWorkingHours) {
+        // Handle the time slot selection logic for non-overlapping slots within working hours
+        console.log('Selected time slot:', hour);
+        this.selected_hour = hour;
+        const selectedDate = new Date(currentDate);
+        selectedDate.setHours(hour);
+        selectedDate.setMinutes(0);
+        selectedDate.setSeconds(0);
+        console.log('Selected day:', selectedDate);
+        this.selected_date = selectedDate;
+        console.log('Selected doctor:', this.selectedDoctor);
+        console.log('Selected service:', this.selectedService);
+      }
     }
   }
+  
+  
   
   getCurrentDateTime(selectedHour: number, currentDate: Date): string {
     const year = currentDate.getFullYear();
@@ -103,17 +129,44 @@ export class UserPageCalendarComponent {
   }
 
   
-  onDoctorServiceSelected(data: { doctor: string, service: string }) {
+  onDoctorServiceSelected(data: { doctor: Doctor, service: Service }) {
     this.selectedDoctor = data.doctor;
     this.selectedService = data.service;
     // Call a method to load the doctor's appointments based on the selected doctor and service
-    this.loadDoctorAppointments();
+    //this.loadDoctorAppointments();
   }
 
   loadDoctorAppointments() {
-    // Fetch the doctor's appointments using the selectedDoctor and selectedService properties
-    // Update the calendar with the fetched appointments
+    // Clear the bookedTimeSlots array
+    this.bookedTimeSlots = [];
+  
+    // Iterate through the fetched appointments
+    for (const appointment of this.appointmentsOfThisDoctor) {
+      const appointmentDate = new Date(appointment.appointmentDate);
+      const appointmentHour = appointmentDate.getHours();
+      const appointmentDay = appointmentDate.getDate();
+      const serviceOfTheAppointment = this.servicesOfThisDoctor.find(service => service.serviceId === appointment.serviceId);
+  
+      // Check if the appointment's date matches the current date
+      if (appointmentDate.toDateString() === this.currentDate.toDateString()) {
+        // Calculate the end hour based on the estimated duration of the service
+        if(serviceOfTheAppointment){
+        const durationParts = serviceOfTheAppointment.estimatedDuration.split(':');
+        const durationHours = parseInt(durationParts[0]);
+        const endHour = appointmentHour + durationHours;
+  
+        // Mark the time slots within the duration as booked
+        for (let hour = appointmentHour; hour < endHour; hour++) {
+          this.bookedTimeSlots.push(hour);
+        }
+      }
+
+      }
+    }
   }
+  
+  
+  
 
   doSomething(){
     
@@ -121,5 +174,39 @@ export class UserPageCalendarComponent {
   }
 
 
+
+}
+
+
+
+interface Service
+{
+  serviceId : number,
+  serviceName : string,
+  estimatedDuration : string,
+  doctorId : number
+
+}
+
+interface Doctor
+{
+  
+  doctorId : number,
+  familyName : string,
+  name : string,
+  telephone : string,
+  userId : number,
+  doctorTitle : string,
+  picturePath : string
+
+}
+
+interface Appointment
+{
+  appointmentId : number,
+  doctorId : number,
+  patientId : number,
+  serviceId : number,
+  appointmentDate : string
 
 }

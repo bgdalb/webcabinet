@@ -4,4 +4,5 @@ export const CustomMessages = {
     phoneNumber: '+40 784 757 750',
     ourAdress : 'Strada Memorandului 43, Brasov, Romania',
     nameOfTheSite : 'Bentea Medical'
+    
   };

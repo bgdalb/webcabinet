@@ -33,7 +33,7 @@ namespace MedicalCabinetBusinessLogic.Services
             var doctor = new Doctor
             {
                 FamilyName = payload.FamilyName,
-                Surname = payload.Surname,
+                Name = payload.Surname,
                 Telephone = payload.Telephone,
                 UserId = payload.UserId
 

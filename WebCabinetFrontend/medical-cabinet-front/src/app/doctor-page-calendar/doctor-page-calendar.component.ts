@@ -8,43 +8,67 @@ import { environment } from 'src/environments/environment';
 })
 export class DoctorPageCalendarComponent {
 
-  doctor: string = 'Doctor Alban';
+  doctor: string = 'Doctor Roberta Macovei';
   
   currentDate: Date = new Date();
   days: Date[] = [];
   hours: number[] = [];
-  bookedTimeSlots: number[] = [9, 12, 13]; // Example: booked time slots
+  bookedTimeSlots: number[] = [9, 12, 13,14,15]; // Example: booked time slots
   patients: Patient[] = [
     {
       id: 1,
       photo: (environment.patient_images +'/patient-1.jpg'),
-      name: 'John',
-      surname: 'Doe',
-      email: 'john.doe@example.com',
-      phoneNumber: '1234567890',
-      cnp: '1234567890',
-      medicalHistory: ['file1.pdf', 'file2.pdf', 'file3.pdf']
+      name: 'Robert',
+      surname: 'Andrei',
+      email: 'robert.andrei@gmail.com',
+      phoneNumber: '0784754321',
+      cnp: '1950403394321',
+      medicalHistory: ['Control_ORL_24-04-14.pdf', 'Control_ORL_24-04-12.pdf', 'Control_ORL_24-04-17.pdf']
     },
     {
       id: 2,
       photo: (environment.patient_images +'/patient-2.jpg'),
-      name: 'Jane',
-      surname: 'Smith',
-      email: 'jane.smith@example.com',
-      phoneNumber: '0987654321',
-      cnp: '0987654321',
-      medicalHistory: ['file4.pdf', 'file5.pdf']
+      name: 'Cristea',
+      surname: 'Adrian',
+      email: 'crsadrian@gmail.com',
+      phoneNumber: '0784432412',
+      cnp: '1950204394124',
+      medicalHistory: ['Control_Dermatologic_26-07-15.pdf', 'Control_Dermatologic_26-01-22.pdf']
     },
     {
       id: 3,
       photo: (environment.patient_images +'/patient-3.jpg'),
-      name: 'Alice',
-      surname: 'Johnson',
-      email: 'alice.johnson@example.com',
-      phoneNumber: '9876543210',
-      cnp: '9876543210',
-      medicalHistory: ['file6.pdf']
-    }];
+      name: 'Adelin',
+      surname: 'Vrabie',
+      email: 'vradelin@yahoo.com',
+      phoneNumber: '0784232459',
+      cnp: '1910204344124',
+      medicalHistory: ['Control_Dermatologic_11-03-2023.pdf']
+    },
+
+    {
+      id: 4,
+      photo: (environment.patient_images +'/patient-4.jpg'),
+      name: 'Roberta',
+      surname: 'Alexandre',
+      email: 'rob.alex@unitbv.ro',
+      phoneNumber: '0784332314',
+      cnp: '2910204354714',
+      medicalHistory: []
+    },
+
+    {
+      id: 5,
+      photo: (environment.patient_images +'/patient-5.jpg'),
+      name: 'Eureka',
+      surname: 'Valeha',
+      email: 'evval@gmail.com',
+      phoneNumber: '0794143121',
+      cnp: '2970122414514',
+      medicalHistory: []
+    },
+  ];
+
     
   constructor() {
     

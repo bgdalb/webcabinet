@@ -11,10 +11,11 @@ namespace MedicalCabinetDataLayer.Entities
     {
         public long? DoctorId { get; set; }
         public string? FamilyName { get; set; }
-        public string? Surname { get; set; }
+        public string? Name { get; set; }
         public string? Telephone { get; set; }
         public long? UserId { get; set; }
         public string? DoctorTitle { get; set; }
+        public string? PicturePath { get; set; }
 
         public User? User { get; set; }
         public ICollection<Service>? Services { get; set; }

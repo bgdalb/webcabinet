@@ -11,7 +11,7 @@
         <div class="hour flex-grow-1 hour-width container clickable" *ngFor="let hour of hours" [class.booked]="isTimeBooked(hour)" [class.unbooked]="!isTimeBooked(hour)">
             <span class="hour-text">{{ hour }}:00</span>
             <ng-container *ngIf="isTimeBooked(hour)">
-              <p class="hour-text">{{ getRandomPatientName() }}</p>
+              <p class="hour-text">{{ getRandomPatientName() }} (Control dermatologic) </p>
             </ng-container>
           </div>
       </div>

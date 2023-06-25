@@ -1,5 +1,6 @@
 ﻿using MedicalCabinetBusinessLogic.DTOs;
 using MedicalCabinetBusinessLogic.Services;
+using MedicalCabinetDataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,27 @@ namespace MedicalCabinetAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("/get-all-services")]
+        public ActionResult<List<Service>> GetAll()
+        {
+            var result = serviceService.GetAll();
+
+            return Ok(result);
+        }
+
+        [HttpGet("/get-all-services-by-doctor-id/{DoctorID}")]
+        public ActionResult<List<Service>> GetServicesByDoctorID(long DoctorID)
+        {
+            var result = serviceService.GetServicesByDoctorID(DoctorID);
+
+            if (result == null)
+            {
+                return BadRequest("No services for that doctor.");
+            }
+
+            return Ok(result);
+
+        }
         // Add other actions for service entity as needed
     }
 }

@@ -20,7 +20,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddCors();
+
 Dependencies.Inject(builder);
+
 
 
 builder.Services.AddDbContext<MedicalCabinetContext>(options =>
@@ -41,6 +46,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseCors(
+      x => x.AllowAnyMethod()
+      .AllowAnyHeader()
+      .WithOrigins("http://localhost:4200", "http://localhost:4200")
+      .AllowCredentials()
+    );
+
 
 app.UseHttpsRedirection();
 

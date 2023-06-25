@@ -52,5 +52,7 @@ namespace MedicalCabinetDataLayer.Repositories
         {
             return GetDoctorRecords().ToList();
         }
+
+    
     }
 }

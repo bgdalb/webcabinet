@@ -2,6 +2,7 @@
 using MedicalCabinetDataLayer;
 using MedicalCabinetBusinessLogic.Services;
 using MedicalCabinetDataLayer.Repositories;
+using MedicalCabinetBusinessLogic;
 
 namespace MedicalCabinetAPI.Settings
 {
@@ -16,10 +17,11 @@ namespace MedicalCabinetAPI.Settings
             applicationBuilder.Services.AddSwaggerGen();
 
             applicationBuilder.Services.AddDbContext<MedicalCabinetContext>(options =>
-        options.UseSqlServer(connectionString));
+            options.UseSqlServer(connectionString));
 
             AddRepositories(applicationBuilder.Services);
             AddServices(applicationBuilder.Services);
+
 
 
         }
@@ -33,6 +35,9 @@ namespace MedicalCabinetAPI.Settings
             services.AddScoped<RoleService>();
             services.AddScoped<PatientService>();
             services.AddScoped<ServiceService>();
+            services.AddScoped<PasswordHashService>();
+            services.AddScoped<Base64Decoder>();
+            services.AddScoped<StorageManip>();
             
         }
 

@@ -57,5 +57,14 @@ namespace MedicalCabinetDataLayer.Repositories
         {
             return GetAppointmentRecords().ToList();
         }
+
+        public List<Appointment> GetAppointmentsByDoctorId(long doctorId)
+        {
+            var result = dbContext.Appointments
+                .Where(a => a.DoctorId == doctorId)
+                .ToList();
+
+            return result;
+        }
     }
 }

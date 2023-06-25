@@ -11,9 +11,14 @@ import { ScrollService } from '../scroll.service';
 export class HomeNavbarComponent {
   constructor(private scrollService: ScrollService) {}
 
+  ngOnInit(): void {
+    
+  }
   scrollToSection(section: string) {
     this.scrollService.scrollToSection(section);
   }
 
   nameOfTheSite = CustomMessages.nameOfTheSite;
+
+  
 }

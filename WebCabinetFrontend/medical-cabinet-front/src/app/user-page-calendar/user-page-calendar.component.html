@@ -1,11 +1,11 @@
 <div class="container">
   <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">&nbsp;</h2>
-  <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Calendarul doctorului {{ selectedDoctor }}</h2>
+  <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Calendarul doctorului {{selectedDoctor.familyName}} {{selectedDoctor.name}}</h2>
   <div class="calendar" style="padding: 10px;">
     <div class="header">
-      <button class="btn btn-link" (click)="previousDay()">Ziua precedentă</button>
+      <button class="btn btn-link" (click)="previousDay()" (click)="loadDoctorAppointments()">Ziua precedentă</button>
       <h2>{{ currentDate | date: 'dd/MM/yyyy' }}</h2>
-      <button class="btn btn-link" (click)="nextDay()">Ziua următoare</button>
+      <button class="btn btn-link" (click)="nextDay()" (click)="loadDoctorAppointments()">Ziua următoare</button>
     </div>
     <div class="container">
       <div class="hours" style="height: 250px;">
@@ -23,7 +23,7 @@
   
 <div *ngIf="selected_date">
   <div class="row justify-content-center">
-    <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Ai ales serviciul {{selectedService}} de la doctorul {{selectedDoctor}} pe {{ selected_date | date: 'yyyy-MM-dd' }} la ora {{ selected_hour }}:00 </h2>
+    <h2 class="my-0 text-center" style="margin-top: 20px; margin-bottom: 30px;">Ai ales serviciul {{selectedService.serviceName}} de la doctorul {{selectedDoctor.familyName}} {{selectedDoctor.name}} pe {{ selected_date | date: 'yyyy-MM-dd' }} la ora {{ selected_hour }}:00 </h2>
   <button class="btn btn-link" (click)="doSomething()">Confirmă și trimite programarea</button>
 </div>
 </div>

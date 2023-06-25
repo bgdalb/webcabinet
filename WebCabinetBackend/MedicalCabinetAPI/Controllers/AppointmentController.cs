@@ -1,5 +1,6 @@
 ﻿using MedicalCabinetBusinessLogic.DTOs;
 using MedicalCabinetBusinessLogic.Services;
+using MedicalCabinetDataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,21 @@ namespace MedicalCabinetAPI.Controllers
             }
 
             return Ok(result);
+        }
+
+
+        [HttpGet("/get-all-appointments-by-doctor-id/{DoctorID}")]
+        public ActionResult<List<Appointment>> GetAppointmentsByDoctorId(long DoctorID)
+        {
+            var result = appointmentService.GetAppointmentsByDoctorId(DoctorID);
+
+            if (result == null)
+            {
+                return BadRequest("No appointments for that doctor.");
+            }
+
+            return Ok(result);
+
         }
 
         // Add other actions for appointment entity as needed

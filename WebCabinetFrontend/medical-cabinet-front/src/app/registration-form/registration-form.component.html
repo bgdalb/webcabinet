@@ -1,71 +1,101 @@
-    <!-- Appointment Start -->
-
-    <div class="container-fluid bg-primary my-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-6 py-5">
-                    <div class="py-5">
-                        <h1 class="display-5 text-white mb-4">Crează-ți un cont!</h1>
-                        <p class="text-white mb-0">
-                            Cea mai ușoară și convenabilă modalitate de a face o rezervare constă în crearea unui cont. Prin crearea unui cont personal, vei beneficia de o experiență mai fluidă și eficientă în procesul de rezervare. Această formă de înregistrare îți permite să-ți salvezi informațiile personale și preferințele într-un singur loc, ceea ce îți va economisi timpul în viitor.
-                            
-                            Atunci când ai un cont, vei putea să completezi datele tale de contact și informațiile relevante o singură dată. Apoi, atunci când dorești să faci o rezervare, pur și simplu te autentifici în contul tău și poți selecta opțiunile dorite într-un mod rapid și fără a mai completa repetat aceleași informații.</p>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
-                        <h1 class="text-white mb-4">Înregistrare</h1>
-                        <form>
-                            <div class="row g-3">
-                                
-                                <div class="col-12">
-                                    <input type="text" id="email" class="form-control bg-light border-0" placeholder="Email" style="height: 55px;">
-                                </div>
-
-                                <div class="col-12">
-                                    <input type="password" id= "password" class="form-control bg-light border-0" placeholder="Parola" style="height: 55px;">
-                                </div>
-
-
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" id ="family_name"class="form-control bg-light border-0" placeholder="Nume de familie" style="height: 55px;">
-                                </div>
-
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" id = "first_name" class="form-control bg-light border-0" placeholder="Prenume" style="height: 55px;">
-                                </div>
-
-                                <div class="col-12">
-                                    <input type="text" id="CNP" class="form-control bg-light border-0" placeholder="CNP" style="height: 55px;">
-                                </div>
-                                
-                                <div class="col-12">
-                                    <input type="text"
-                                           class="form-control bg-light border-0"
-                                           placeholder="Data nașterii"
-                                           style="height: 55px;"
-                                           onfocus="(this.type='date')"
-                                           onblur="(this.type='text')"
-                                           pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}"
-                                           max="{{ getCurrentDate() }}"
-                                           id = "date_of_birth"
-                                           required>
-                                  </div>
-                                  <div class="col-12">
-                                    <label for="profile_picture" class="form-label text-white mb-2">Poză de profil</label>
-                                    <input type="file" id="profile_picture" accept="image/jpeg" class="form-control bg-light border-0">
-                                  </div>
-
-
-                                <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" (click)="isRegistrationValid()" type="submit">Înregistrează-te</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid bg-primary my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+      <div class="row gx-5">
+        <div class="col-lg-6 py-5">
+          <div class="py-5">
+            <h1 class="display-5 text-white mb-4">Crează-ți un cont!</h1>
+            <p class="text-white mb-0">
+              Cea mai ușoară și convenabilă modalitate de a face o rezervare constă în crearea unui cont. Prin crearea unui cont personal, vei beneficia de o experiență mai fluidă și eficientă în procesul de rezervare. Această formă de înregistrare îți permite să-ți salvezi informațiile personale și preferințele într-un singur loc, ceea ce îți va economisi timpul în viitor.
+  
+              Atunci când ai un cont, vei putea să completezi datele tale de contact și informațiile relevante o singură dată. Apoi, atunci când dorești să faci o rezervare, pur și simplu te autentifici în contul tău și poți selecta opțiunile dorite într-un mod rapid și fără a mai completa repetat aceleași informații.
+            </p>
+          </div>
         </div>
-    </div>
+        <div class="col-lg-5">
+          <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
+            <h1 class="text-white mb-4">Înregistrare</h1>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+              <div class="row g-3">
+  
+                <div class="col-12">
+                  <input type="text" formControlName="email" id="email" class="form-control bg-light border-0" placeholder="Email" style="height: 55px;">
+                  <div *ngIf="registrationForm.get('email')!.invalid && (registrationForm.get('email')!.dirty || registrationForm.get('email')!.touched)">
+                    <div *ngIf="registrationForm.get('email')!.errors!['required']">Introduceți un email.</div>
+                    <div *ngIf="registrationForm.get('email')!.errors!['email']">Format de email invalid.</div>
+                    <div *ngIf="registrationForm.get('email')!.errors!['uniqueEmail']">Email-ul există deja.</div>
+                  </div>
+                </div>
+  
+                <div class="col-12">
+                  <input type="password" formControlName="password" id="password" class="form-control bg-light border-0" placeholder="Parola" style="height: 55px;">
+                  <div *ngIf="registrationForm.get('password')!.invalid && (registrationForm.get('password')!.dirty || registrationForm.get('password')!.touched)">
+                    <div *ngIf="registrationForm.get('password')!.errors!['required']">Introduceți o parola</div>
+                    <div *ngIf="registrationForm.get('password')!.errors!['minlength']">Parola trebuie să aibă minim 6 caractere</div>
+                  </div>
+                </div>
+  
+                <div class="col-12 col-sm-6">
+                  <input type="text" formControlName="familyName" id="family_name" class="form-control bg-light border-0" placeholder="Nume de familie" style="height: 55px;">
+                  <div *ngIf="registrationForm.get('familyName')!.invalid && (registrationForm.get('familyName')!.dirty || registrationForm.get('familyName')!.touched)">
+                    <div *ngIf="registrationForm.get('familyName')!.errors!['required']">Introduceți numele de familie</div>
+                  </div>
+                </div>
+  
+                <div class="col-12 col-sm-6">
+                  <input type="text" formControlName="firstName" id="first_name" class="form-control bg-light border-0" placeholder="Prenume" style="height: 55px;">
+                  <div *ngIf="registrationForm.get('firstName')!.invalid && (registrationForm.get('firstName')!.dirty || registrationForm.get('firstName')!.touched)">
+                    <div *ngIf="registrationForm.get('firstName')!.errors!['required']">Prenumele este necesar</div>
+                  </div>
+                </div>
 
-    <!-- Appointment End -->
+                <div class="col-12">
+                    <input type="text" formControlName="phoneNumber" id="phone_number" class="form-control bg-light border-0" placeholder="Număr de telefon" style="height: 55px;">
+                    <div *ngIf="registrationForm.get('phoneNumber')!.invalid && (registrationForm.get('phoneNumber')!.dirty || registrationForm.get('phoneNumber')!.touched)">
+                      <div *ngIf="registrationForm.get('phoneNumber')!.errors!['required']">Introduceți numărul de telefon.</div>
+                      <div *ngIf="registrationForm.get('phoneNumber')!.errors!['pattern']">Format-ul numărului de telefon este invalid.</div>
+                      <div *ngIf="registrationForm.get('phoneNumber')!.errors!['minlength']">Numărul de telefon trebuie să aibă exact 10 caractere.</div>
+                      <div *ngIf="registrationForm.get('phoneNumber')!.errors!['maxlength']">Numărul de telefon trebuie să aibă exact 10 caractere.</div>
+                    </div>
+                  </div>
+  
+                <div class="col-12">
+                  <input type="text" formControlName="cnp" id="CNP" class="form-control bg-light border-0" placeholder="CNP" style="height: 55px;">
+                  <div *ngIf="registrationForm.get('cnp')!.invalid && (registrationForm.get('cnp')!.dirty || registrationForm.get('cnp')!.touched)">
+                    <div *ngIf="registrationForm.get('cnp')!.errors!['required']">Introduceți CNP-ul (Cod numeric personal).</div>
+                    <div *ngIf="registrationForm.get('cnp')!.errors!['minlength']">CNP-ul (Cod numeric personal) trebuie să aibă exact 13 caractere.</div>
+                    <div *ngIf="registrationForm.get('cnp')!.errors!['maxlength']">CNP-ul (Cod numeric personal) trebuie să aibă exact 13 caractere.</div>
+                  </div>
+                </div>
+   
+                <div class="col-12">
+                    <input type="date" formControlName="dateOfBirth" id="date_of_birth"  [max]="getCurrentDate()" class="form-control bg-light border-0" placeholder="Data nașterii" style="height: 55px;">
+                    <div *ngIf="registrationForm.get('dateOfBirth')!.invalid && (registrationForm.get('dateOfBirth')!.dirty || registrationForm.get('dateOfBirth')!.touched)">
+                      <div *ngIf="registrationForm.get('dateOfBirth')!.errors!['required']">Introduceți data de naștere.</div>
+                      <div *ngIf="registrationForm.get('dateOfBirth')!.errors!['max']">Trebuie să aveți minim 18 ani.</div>
+                      <div *ngIf="registrationForm.get('dateOfBirth')!.errors!['ageBelowMinimum']">Trebuie să aveți minim 18 ani.</div>
+                    </div>
+                  </div>
+
+                  
+                <div class="col-12">
+                  <label for="profile_picture" class="form-label text-white mb-2">Poză de profil</label>
+                  <input type="file" formControlName="profilePicture" id="profile_picture" accept="image/jpeg" class="form-control bg-light border-0">
+                  <div *ngIf="registrationForm.get('profilePicture')!.invalid && (registrationForm.get('profilePicture')!.dirty || registrationForm.get('profilePicture')!.touched)">
+                    <div *ngIf="registrationForm.get('profilePicture')!.errors!['required']">Încărcați poza dvs de profil.</div>
+                  </div>
+                </div>
+  
+                <div class="col-12">
+                  <button class="btn btn-dark w-100 py-3" type="submit">Înregistrează-te</button>
+                  <div *ngIf="showEmailError" class="error-message">Email-ul există deja.</div>
+                  <div *ngIf="showCNPError" class="error-message">CNP-ul există deja.</div>
+                  <div *ngIf="showGenericError" class="error-message">A apărut o problemă. Reîncearcă.</div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

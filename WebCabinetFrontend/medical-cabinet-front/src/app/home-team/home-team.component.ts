@@ -19,11 +19,11 @@ export class HomeTeamComponent implements OnInit  {
 
   ngOnInit(): void {
     this.doctors = [
-      { name: 'Doctor Alban', picturePath: (environment.doctor_images +'/doctor-1.jpg'), doctorTitle: 'BossDoctor'},
-      { name: 'Doctor Bentea', picturePath: (environment.doctor_images +'/doctor-2.jpg'), doctorTitle: 'SmecherDoctor'},
-      { name: 'Doctor Alta', picturePath: (environment.doctor_images +'/doctor-3.jpg'), doctorTitle: 'SpermDOnor'},
-      { name: 'Doctor Ionut', picturePath: (environment.doctor_images +'/doctor-4.jpg'), doctorTitle: 'Boss'},
-      { name: 'Doctor Ionut', picturePath: (environment.doctor_images +'/doctor-5.jpg'), doctorTitle: 'Boss'}
+      { name: 'Doctor Andreea Birlan', picturePath: (environment.doctor_images +'/Doctor-1.jpg'), doctorTitle: 'Radiolog'},
+      { name: 'Doctor Alexandra Petcovici', picturePath: (environment.doctor_images +'/Doctor-2.jpg'), doctorTitle: 'Cardiolog'},
+      { name: 'Doctor Leonora Borzescu', picturePath: (environment.doctor_images +'/Doctor-3.jpg'), doctorTitle: 'Cardiolog'},
+      { name: 'Doctor Cabral Ibacko', picturePath: (environment.doctor_images +'/Doctor-4.jpg'), doctorTitle: 'ORL'},
+      { name: 'Doctor Roberta Macovei', picturePath: (environment.doctor_images +'/Doctor-5.jpg'), doctorTitle: 'Dermatolog'}
     ]
   }
   

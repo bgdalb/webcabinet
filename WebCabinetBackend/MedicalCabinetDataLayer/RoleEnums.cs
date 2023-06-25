@@ -8,8 +8,8 @@ namespace MedicalCabinetDataLayer
 {
     public enum RoleEnums
     {
-        PATIENT = 0,
-        DOCTOR = 1,
-        ADMIN = 2
+        PATIENT = 1,
+        DOCTOR = 2,
+        ADMIN = 3
     }
 }
