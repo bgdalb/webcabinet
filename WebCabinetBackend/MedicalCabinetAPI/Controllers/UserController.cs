@@ -1,5 +1,6 @@
 ﻿using MedicalCabinetBusinessLogic.DTOs;
 using MedicalCabinetBusinessLogic.Services;
+using MedicalCabinetDataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -96,6 +97,20 @@ namespace MedicalCabinetAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("/get-useremailandid-by-patientid/{patientId}")]
+        public ActionResult<UserIDandEmailDTO> GetUserEmailAndIdByPatientId(long patientId)
+        {
+
+            var result = userService.GetUserEmailAndIdByPatientId(patientId);
+
+            if (result == null)
+            {
+                return BadRequest("No such data.");
+            }
+
+            return Ok(result);
+
+        }
 
 
 

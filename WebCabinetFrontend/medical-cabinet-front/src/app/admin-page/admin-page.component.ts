@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AdminPageComponent {
 
+  currentView: string = 'patients';
+
+  handleViewChange(view: string) {
+    this.currentView = view;
+    // Perform actions based on the selected view
+  }
+
+  
+
+
+  
 }

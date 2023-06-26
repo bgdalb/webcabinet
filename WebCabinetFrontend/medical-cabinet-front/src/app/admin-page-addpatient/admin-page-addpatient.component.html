@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a class="navbar-brand p-0">
+        <h1 class="m-0 text-primary"><span class="heart-pulse">
+            <i class="fas fa-heartbeat"></i>
+          </span>              
+            {{nameOfTheSite}}</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a  (click)="goBackToAdminPanel()" class="nav-item nav-link custom-link">Înapoi la panoul de control</a>
+            <div class="d-flex align-items-center ms-3">
+          </div>
+        </div>
+    </div>
+  </nav>
+
+
+<div class="container" [formGroup]="patientForm">
+    <div class="row">
+      <h2 class="my-4 text-center">Adaugă pacient</h2>
+      <div class="col-md-6 offset-md-3 text-center">
+        <div class="card">
+          <img [src]="'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'" alt="Patient Photo" class="card-img-top rounded-circle mx-auto" style="width: 300px; height: 300px;">
+          <div class="form-group">
+            <label for="fileUpload" class="form-label">Alege o fotografie</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="fileUpload" accept=".jpg, .jpeg, .png" formControlName="profilePicture" (change)="onFileSelected($event)">
+              <label class="custom-file-label" for="fileUpload">{{ patientForm.get('profilePicture')?.value ? patientForm.get('profilePicture')?.value.name : 'Selectează fișierul' }}</label>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="patientForm" (submit)="onSubmit()" class="patient-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Nume</label>
+                <input type="text" class="form-control" id="name" formControlName="firstName">
+                <div *ngIf="patientForm.get('firstName')?.invalid && (patientForm.get('firstName')?.dirty || patientForm.get('firstName')?.touched)">
+                  <div *ngIf="patientForm.get('firstName')?.hasError('required')">Numele este obligatoriu.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="surname" class="form-label">Nume de familie</label>
+                <input type="text" class="form-control" id="surname" formControlName="familyName">
+                <div *ngIf="patientForm.get('familyName')?.invalid && (patientForm.get('familyName')?.dirty || patientForm.get('familyName')?.touched)">
+                  <div *ngIf="patientForm.get('familyName')?.hasError('required')">Numele de familie este obligatoriu.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber" class="form-label">Număr de telefon</label>
+                <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+                <div *ngIf="patientForm.get('phoneNumber')?.invalid && (patientForm.get('phoneNumber')?.dirty || patientForm.get('phoneNumber')?.touched)">
+                  <div *ngIf="patientForm.get('phoneNumber')?.hasError('required')">Numărul de telefon este obligatoriu.</div>
+                  <div *ngIf="patientForm.get('phoneNumber')?.hasError('minlength')">Numărul de telefon trebuie să aibă cel puțin 10 caractere.</div>
+                  <div *ngIf="patientForm.get('phoneNumber')?.hasError('maxlength')">Numărul de telefon trebuie să aibă cel mult 10 caractere.</div>
+                  <div *ngIf="patientForm.get('phoneNumber')?.hasError('pattern')">Numărul de telefon trebuie să înceapă cu '07' și să conțină alte 8 cifre.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="patientForm.get('email')?.invalid && (patientForm.get('email')?.dirty || patientForm.get('email')?.touched)">
+                  <div *ngIf="patientForm.get('email')?.hasError('required')">Email-ul este obligatoriu.</div>
+                  <div *ngIf="patientForm.get('email')?.hasError('email')">Email-ul trebuie să fie într-un format valid.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password" class="form-label">Parolă</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <div *ngIf="patientForm.get('password')?.invalid && (patientForm.get('password')?.dirty || patientForm.get('password')?.touched)">
+                  <div *ngIf="patientForm.get('password')?.hasError('required')">Parola este obligatorie.</div>
+                  <div *ngIf="patientForm.get('password')?.hasError('minlength')">Parola trebuie să conțină cel puțin 6 caractere.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cnp" class="form-label">CNP</label>
+                <input type="text" class="form-control" id="cnp" formControlName="cnp">
+                <div *ngIf="patientForm.get('cnp')?.invalid && (patientForm.get('cnp')?.dirty || patientForm.get('cnp')?.touched)">
+                  <div *ngIf="patientForm.get('cnp')?.hasError('required')">CNP-ul este obligatoriu.</div>
+                  <div *ngIf="patientForm.get('cnp')?.hasError('minlength')">CNP-ul trebuie să aibă 13 caractere.</div>
+                  <div *ngIf="patientForm.get('cnp')?.hasError('maxlength')">CNP-ul trebuie să aibă 13 caractere.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dateOfBirth" class="form-label">Data de naștere</label>
+                <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
+                <div *ngIf="patientForm.get('dateOfBirth')?.invalid && (patientForm.get('dateOfBirth')?.dirty || patientForm.get('dateOfBirth')?.touched)">
+                  <div *ngIf="patientForm.get('dateOfBirth')?.hasError('required')">Data de naștere este obligatorie.</div>
+                  <div *ngIf="patientForm.get('dateOfBirth')?.hasError('minimumAge')">Trebuie să aveți cel puțin 18 ani pentru a vă înregistra.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg mt-3">Adaugă pacient</button>
+              <div *ngIf="showEmailError" class="error-message">Email-ul există deja.</div>
+              <div *ngIf="showCNPError" class="error-message">CNP-ul există deja.</div>
+              <div *ngIf="showGenericError" class="error-message">A apărut o problemă. Reîncearcă.</div>
+              <div *ngIf="showSuccessMessage" class="error-message">Cererea s-a realizat cu succes.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,25 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+  <a class="navbar-brand p-0">
+      <h1 class="m-0 text-primary"><span class="heart-pulse">
+          <i class="fas fa-heartbeat"></i>
+        </span>              
+          {{nameOfTheSite}}</h1>
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+          <a  (click)="goBackToDoctorView()" class="nav-item nav-link custom-link">Înapoi la pacienți</a>
+          <div class="d-flex align-items-center ms-3">
+            <img [src]="picturePath" alt="Profile Photo" class="profile-photo me-2 rounded-circle img-fluid" width="40" height="40">
+            <span class="doctor-name">{{doctor.familyName}} {{doctor.name}}</span>
+        </div>
+      </div>
+  </div>
+</nav>
+
 <div *ngIf="selectedPatient" class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3 text-center">
         <div class="card">
-          <img [src]="selectedPatient.photo" alt="Patient Photo" class="card-img-top rounded-circle mx-auto" style="width: 400px; height: 400px;">
+          <img [src]="selectedPatient.picturePath" alt="Patient Photo" class="card-img-top rounded-circle mx-auto" style="width: 400px; height: 400px;">
           <div class="card-body">
-            <h4 class="card-title">{{ selectedPatient.name }} {{ selectedPatient.surname }}</h4>
+            <h4 class="card-title">{{ selectedPatient.familyName }} {{ selectedPatient.name }}</h4>
   
             <!-- Add new file form -->
-            <form (submit)="addNewFile()" class="d-flex flex-column align-items-center">
-              <label class="custom-file-upload">
-                <input type="file" (change)="onFileSelected($event)" accept=".pdf, .doc, .docx">
-                <i class="fas fa-cloud-upload-alt"></i> <span>{{ newFile ? newFile : 'Choose File' }}</span>
-              </label>
-              <button type="submit" class="btn btn-primary mt-3">Adaugă fișier</button>
-            </form>
+
+          <form (submit)="addNewFile()" class="d-flex flex-column align-items-center">
+            <label class="custom-file-upload">
+              <input type="file" (change)="onFileSelected($event)" accept=".pdf, .doc, .docx">
+              <i class="fas fa-cloud-upload-alt"></i> <span>{{ newFile ? newFile : 'Alege fișierul' }}</span>
+            </label>
+            <input type="text" [(ngModel)]="fileName" name="fileName" placeholder="Numele fișierului" class="form-control mt-2">
+            <textarea [(ngModel)]="fileDescription" name="fileDescription" placeholder="Descrierea fișierului" class="form-control mt-2"></textarea>
+            <button type="submit" class="btn btn-primary mt-3">Adaugă fișier</button>
+            <p *ngIf="errorOccurred" class="text-danger">A apărut o eroare. Reîncearcă.</p>
+
+          </form>
+
   
             <!-- Display patient details -->
-            <h5>Istoric medical:</h5>
-            <ul class="list-group">
-              <li *ngFor="let file of selectedPatient.medicalHistory" class="list-group-item clickable" (click)="viewFile(file)">{{ file }}</li>
-            </ul>
+                            <h5>Istoric medical:</h5>
+                <ul class="list-group">
+                  <li *ngFor="let file of medicalHistoriesOfThisPatient" class="list-group-item clickable" (click)="viewFile(file.filePath)">
+                    <div class="file-info">
+                      <span class="file-name">{{ file.fileName }}</span>
+                      <p class="file-description">{{ file.fileDescription }}</p>
+                    </div>
+                  </li>
+                </ul>
           </div>
         </div>
       </div>

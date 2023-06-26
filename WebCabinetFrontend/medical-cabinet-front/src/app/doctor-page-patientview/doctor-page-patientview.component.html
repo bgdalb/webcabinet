@@ -8,13 +8,13 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="patient-photo">
-                    <img [src]="patient.photo" alt="Patient Photo" class="img-fluid">
+                    <img [src]="patient.picturePath" alt="Patient Photo" class="img-fluid">
                   </div>
                   <div class="patient-details ml-3">
-                    <h4>{{ patient.name }} {{ patient.surname }}</h4>
-                    <p>Numar de telefon: {{ patient.phoneNumber }}</p>
-                    <p>Email: {{ patient.email }}</p>
+                    <h4>{{ patient.familyName }} {{ patient.name }} </h4>
+                    <p>Numar de telefon: {{ patient.telephone }}</p>
                     <p>CNP: {{ patient.cnp }}</p>
+                    <p>Data nasterii: {{patient.dateOfBirth | date: 'yyyy-MM-dd' }}</p>
                     <button class="btn btn-primary" (click)="viewMedicalHistory(patient)">Vezi istoric medical</button>
                   </div>
                 </div>
@@ -26,13 +26,14 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="patient-photo">
-                    <img [src]="patient.photo" alt="Patient Photo" class="img-fluid">
+                    <img [src]="patient.picturePath" alt="Patient Photo" class="img-fluid">
                   </div>
                   <div class="patient-details ml-3">
-                    <h4>{{ patient.name }} {{ patient.surname }}</h4>
-                    <p>Numar de telefon: {{ patient.phoneNumber }}</p>
-                    <p>Email: {{ patient.email }}</p>
+                    <h4>{{ patient.familyName }} {{ patient.name }} </h4>
+                    <p>Numar de telefon: {{ patient.telephone }}</p>
                     <p>CNP: {{ patient.cnp }}</p>
+                    <p>Data nasterii: {{patient.dateOfBirth | date: 'yyyy-MM-dd'}}</p>
+
                     <button class="btn btn-primary" (click)="viewMedicalHistory(patient)">Vezi istoric medical</button>
                   </div>
                 </div>

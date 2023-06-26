@@ -91,3 +91,25 @@
     cursor: pointer;
   }
   
+  .doctor-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Component's SCSS file */
+.file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.file-description {
+  font-size: 14px;
+  color: #777;
+}

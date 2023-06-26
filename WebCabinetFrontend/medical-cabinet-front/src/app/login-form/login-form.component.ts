@@ -73,10 +73,10 @@ export class LoginFormComponent {
                   this.router.navigate(['/user-page']);
                   break;
                   case 2: // Role 2
-                  this.router.navigate(['/doctor-page'], { state: { constructResponse } });
+                  this.router.navigate(['/doctor-page']);
                   break;
                   case 3: // Role 3
-                  this.router.navigate(['/admin-page'], { state: { constructResponse } });
+                  this.router.navigate(['/admin-page']);
                   break;
                   default: // Default route for unknown roles
                   this.router.navigate(['/']);

@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AppointmentService } from '../appointment.service';
 import { firstValueFrom } from 'rxjs';
 import { ServicesService } from '../services.service';
+import { SharedDeviceService } from '../shared-device.service';
+import { PatientService } from '../patient-service.service';
 
 
 @Component({
@@ -32,7 +34,10 @@ export class UserPageCalendarComponent {
   };
 
 
-  constructor(private appointmentService: AppointmentService, private servicesService : ServicesService) {}
+  constructor(private appointmentService: AppointmentService,
+     private servicesService : ServicesService,
+      private sharedDeviceService : SharedDeviceService,
+      private patientService : PatientService) {}
 
   async ngOnInit() {
     this.appointmentsOfThisDoctor = await firstValueFrom(this.appointmentService.getAllAppointmentsByDoctorId(this.selectedDoctor.doctorId));
@@ -168,9 +173,34 @@ export class UserPageCalendarComponent {
   
   
 
-  doSomething(){
+  async doSomething(){
     
-    this.appointmentSent.emit();
+    
+    const user = this.sharedDeviceService.getUser();
+    const patient = await firstValueFrom(this.patientService.getPatientByUserID(user.userId));
+    const appointmentData = {
+      doctorId: this.selectedDoctor.doctorId,
+      patientId: patient.patientId,
+      serviceId: this.selectedService.serviceId,
+      appointmentDate: this.getCurrentDateTime(this.selected_hour, this.selected_date)
+    };
+    console.log(appointmentData)
+    this.appointmentService.addApointment(appointmentData).subscribe(
+      (response) => {
+        this.appointmentSent.emit();
+        console.log('Response:', response);
+       
+      },
+      (error) => {
+        
+        console.error('Error:', error);
+        
+      },
+      () => {
+        
+        console.log('Request completed');
+      }
+    );
   }
 
 

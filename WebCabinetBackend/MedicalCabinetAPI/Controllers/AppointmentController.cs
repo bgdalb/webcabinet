@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MedicalCabinetAPI.Controllers
 {
     [ApiController]
-    [Route("api/appointment")]
+    
     public class AppointmentController : ControllerBase
     {
         private readonly AppointmentService appointmentService;
@@ -30,6 +30,7 @@ namespace MedicalCabinetAPI.Controllers
             return Ok(result);
         }
 
+       
 
         [HttpGet("/get-all-appointments-by-doctor-id/{DoctorID}")]
         public ActionResult<List<Appointment>> GetAppointmentsByDoctorId(long DoctorID)

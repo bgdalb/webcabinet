@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ServicesService } from '../services.service';
+import { AppointmentService } from '../appointment.service';
+import { SharedDeviceService } from '../shared-device.service';
+import { DoctorService } from '../doctor.service';
+import { PatientService } from '../patient-service.service';
 
 @Component({
   selector: 'app-doctor-page-calendar',
@@ -8,13 +14,16 @@ import { environment } from 'src/environments/environment';
 })
 export class DoctorPageCalendarComponent {
 
-  doctor: string = 'Doctor Roberta Macovei';
+  //doctor: string = 'Doctor Roberta Macovei';
   
+  appointmentsOfThisDoctor : any[] = [];
+  
+  servicesOfThisDoctor : any[] = [];
   currentDate: Date = new Date();
   days: Date[] = [];
   hours: number[] = [];
-  bookedTimeSlots: number[] = [9, 12, 13,14,15]; // Example: booked time slots
-  patients: Patient[] = [
+  bookedTimeSlots: any[] = [9, 12, 13,14,15]; // Example: booked time slots
+  patients: any[] = [
     {
       id: 1,
       photo: (environment.patient_images +'/patient-1.jpg'),
@@ -69,13 +78,27 @@ export class DoctorPageCalendarComponent {
     },
   ];
 
+  selectedDoctor: any;
+
     
-  constructor() {
+  constructor(private appointmentService: AppointmentService,
+    private servicesService : ServicesService,
+    private sharedDeviceService : SharedDeviceService,
+    private doctorService: DoctorService,
+    private patientService: PatientService
+    ) {
     
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const user = this.sharedDeviceService.getUser();
+    this.selectedDoctor = await firstValueFrom(this.doctorService.getDoctorByUserID(user.userId)); 
+    this.appointmentsOfThisDoctor = await firstValueFrom(this.appointmentService.getAllAppointmentsByDoctorId(this.selectedDoctor.doctorId));
+    this.servicesOfThisDoctor = await firstValueFrom(this.servicesService.getAllServicesByDoctorId(this.selectedDoctor.doctorId));
+    this.patients = await firstValueFrom(this.patientService.getAllPatientsAny())
     this.updateHours();
+    console.log(this.appointmentsOfThisDoctor);
+    this.loadDoctorAppointments();
   }
 
   updateHours() {
@@ -94,7 +117,7 @@ export class DoctorPageCalendarComponent {
   }
 
   isTimeBooked(hour: number): boolean {
-    return this.bookedTimeSlots.includes(hour);
+    return this.bookedTimeSlots.some(slot => slot.hour === hour);
   }
 
   previousDay() {
@@ -119,11 +142,41 @@ export class DoctorPageCalendarComponent {
     this.updateHours();
   }
 
-  getRandomPatientName(): string {
-    const bookedPatients = this.patients;
-    const randomIndex = Math.floor(Math.random() * bookedPatients.length);
-    return bookedPatients[randomIndex]?.surname +' '+ bookedPatients[randomIndex]?.name || '';
+
+  loadDoctorAppointments() {
+    // Clear the bookedTimeSlots array
+    this.bookedTimeSlots = [];
+  
+    // Iterate through the fetched appointments
+    for (const appointment of this.appointmentsOfThisDoctor) {
+      const appointmentDate = new Date(appointment.appointmentDate);
+      const appointmentHour = appointmentDate.getHours();
+      const appointmentDay = appointmentDate.getDate();
+      const serviceOfTheAppointment = this.servicesOfThisDoctor.find(service => service.serviceId === appointment.serviceId);
+  
+      // Check if the appointment's date matches the current date
+      if (appointmentDate.toDateString() === this.currentDate.toDateString()) {
+        // Calculate the end hour based on the estimated duration of the service
+        if (serviceOfTheAppointment) {
+          const durationParts = serviceOfTheAppointment.estimatedDuration.split(':');
+          const durationHours = parseInt(durationParts[0]);
+          const endHour = appointmentHour + durationHours;
+  
+          // Mark the time slots within the duration as booked
+          for (let hour = appointmentHour; hour < endHour; hour++) {
+            // Push an object with the hour, patient name, and service to the bookedTimeSlots array
+            if (hour === appointmentHour) {
+              const patient = this.patients.find(patient => patient.patientId === appointment.patientId);
+              this.bookedTimeSlots.push({ hour, patientName: (patient.familyName +" "+patient.name) , serviceName: " - " + serviceOfTheAppointment.serviceName });
+            } else {
+              this.bookedTimeSlots.push({ hour });
+            }
+          }
+        }
+      }
+    }
   }
+  
 
 }
 

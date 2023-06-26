@@ -38,6 +38,20 @@ namespace MedicalCabinetAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("/get-doctor-by-userid/{UserID}")]
+        public ActionResult<Doctor> GetDoctorByUserid(long UserID)
+        {
+            var result = doctorService.GetDoctorByUserId(UserID);
+
+            if (result == null)
+            {
+                return BadRequest("No such doctor.");
+            }
+
+            return Ok(result);
+
+        }
+
         // Add other actions for doctor entity as needed
     }
 }

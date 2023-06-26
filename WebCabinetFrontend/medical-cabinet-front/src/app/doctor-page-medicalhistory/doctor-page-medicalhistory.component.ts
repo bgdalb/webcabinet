@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { SharedDeviceService } from '../shared-device.service';
+import { DoctorService } from '../doctor.service';
+import { PatientService } from '../patient-service.service';
+import { firstValueFrom } from 'rxjs';
+import { CustomMessages } from 'src/utilities/custom_messages';
+import { MedicalhistoryService } from '../medicalhistory.service';
 
 @Component({
   selector: 'app-doctor-page-medicalhistory',
@@ -9,76 +15,81 @@ import { environment } from 'src/environments/environment';
 })
 export class DoctorPageMedicalhistoryComponent {
 
-  constructor(private route: ActivatedRoute) {}
-  selectedPatient: Patient | null = null;
-  newFile: string = '';
-  patients: Patient[] = [
-    {
-      id: 1,
-      photo: (environment.patient_images +'/patient-1.jpg'),
-      name: 'Robert',
-      surname: 'Andrei',
-      email: 'robert.andrei@gmail.com',
-      phoneNumber: '0784754321',
-      cnp: '1950403394321',
-      medicalHistory: ['Control_ORL_24-04-14.pdf', 'Control_ORL_24-04-12.pdf', 'Control_ORL_24-04-17.pdf']
-    },
-    {
-      id: 2,
-      photo: (environment.patient_images +'/patient-2.jpg'),
-      name: 'Cristea',
-      surname: 'Adrian',
-      email: 'crsadrian@gmail.com',
-      phoneNumber: '0784432412',
-      cnp: '1950204394124',
-      medicalHistory: ['Control_Dermatologic_26-07-15.pdf', 'Control_Dermatologic_26-01-22.pdf']
-    },
-    {
-      id: 3,
-      photo: (environment.patient_images +'/patient-3.jpg'),
-      name: 'Adelin',
-      surname: 'Vrabie',
-      email: 'vradelin@yahoo.com',
-      phoneNumber: '0784232459',
-      cnp: '1910204344124',
-      medicalHistory: ['Control_Dermatologic_11-03-2023.pdf']
-    },
+  constructor(private router: Router,
+     private route: ActivatedRoute,
+      private sharedDeviceService: SharedDeviceService,
+       private doctorService: DoctorService,
+        private patientService: PatientService,
+        private medicalHistoryService: MedicalhistoryService) 
+  {
 
-    {
-      id: 4,
-      photo: (environment.patient_images +'/patient-4.jpg'),
-      name: 'Roberta',
-      surname: 'Alexandre',
-      email: 'rob.alex@unitbv.ro',
-      phoneNumber: '0784332314',
-      cnp: '2910204354714',
-      medicalHistory: []
-    },
-
-    {
-      id: 5,
-      photo: (environment.patient_images +'/patient-5.jpg'),
-      name: 'Eureka',
-      surname: 'Valeha',
-      email: 'evval@gmail.com',
-      phoneNumber: '0794143121',
-      cnp: '2970122414514',
-      medicalHistory: []
-    },
+    
+  }
+  fileName: string = '';
+  fileDescription: string = '';
+  doctor : any;
+  selectedPatient: any | null = null;
+  newFile: any;
+  selectedFile: File | null = null;
+  picturePath:any;
+  patients: any[] = [
   ];
+
+  medicalHistoriesOfThisPatient: any[] =[];
+  errorOccurred = false;
 
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe(async params => {
       const patientId = +params['id']; // Get the patient ID from the route parameter
 
+      const user = this.sharedDeviceService.getUser();
+    
+      this.medicalHistoriesOfThisPatient = await firstValueFrom(this.medicalHistoryService.getMedicalHistoriesByPatientId(patientId));
+      this.doctor = await firstValueFrom(this.doctorService.getDoctorByUserID(user.userId));
+      this.patients = await firstValueFrom(this.patientService.getAllPatients());
+      console.log(this.patients)
+      //console.log(this.doctor)
+      for (const patient of this.patients) {
+        const filePath = patient.picturePath;
+        patient.picturePath = this.fixPicturePath(filePath);
+      }
+      
+      const filePath = this.doctor.picturePath;
+      this.picturePath = this.fixPicturePath(filePath);
       // Fetch the selected patient from your data source
-      this.selectedPatient = this.patients.find(patient => patient.id === patientId) || null;
+      this.selectedPatient = this.patients.find(patient => patient.patientId === patientId) || null;
     });
   }
 
+  nameOfTheSite = CustomMessages.nameOfTheSite;
+
+  fixPicturePath(initialPath: string): string {
+    const filePath = initialPath;
+  
+    const startIndex = filePath.lastIndexOf("\\Users\\");
+    const extractedPath = filePath.substring(startIndex);
+    const correctedPath = extractedPath.replace(/\\/g, "/");
+    const picturePath = environment.user_files + correctedPath;
+  
+    console.log(picturePath);
+  
+    return picturePath;
+  }
+
+  fixMedicalHistoriesPath(initialPath: string): string
+  {
+    const filePath = initialPath;
+    const startIndex = filePath.lastIndexOf('\\Users');
+    const extractedPath = filePath.substring(startIndex + 1);
+    const correctedPath = extractedPath.replace(/\\/g, "/");
+    const correctFilePath = environment.user_files+'/'+ correctedPath;
+    console.log(correctFilePath);  
+    return correctFilePath;
+  }
+
   // Function to set the selected patient
-  selectPatient(patient: Patient) {
+  selectPatient(patient: any) {
     this.selectedPatient = patient;
   }
 
@@ -86,11 +97,40 @@ export class DoctorPageMedicalhistoryComponent {
     const searchTerm = (event.target as HTMLInputElement).value;
     this.newFile = searchTerm;
   }
+
   addNewFile() {
-    // Add the new file to the selected patient's medical history
-    if (this.selectedPatient) {
-      this.selectedPatient.medicalHistory.push(this.newFile);
-      this.newFile = ''; // Clear the input field
+    // Check if all required fields are filled
+    if (this.selectedPatient && this.fileName && this.fileDescription && this.selectedFile) {
+      
+      const formData = new FormData();
+      formData.append('PatientId', this.selectedPatient.patientId);
+      formData.append('FileName', this.fileName);
+      formData.append('FileDescription', this.fileDescription);
+      formData.append('File', this.selectedFile);
+
+      this.medicalHistoryService.addMedicalHistory(formData).subscribe(
+        async response => {
+          // Handle the success response from the backend
+          console.log('File added successfully:', response);
+          this.medicalHistoriesOfThisPatient = await firstValueFrom(this.medicalHistoryService.getMedicalHistoriesByPatientId(this.selectedPatient.patientId));
+
+                //this.selectedPatient.medicalHistory.push(newFile);
+            this.selectedFile = null;
+            this.newFile = ''; // Clear the input field
+            this.fileName = ''; // Clear the filename input
+            this.fileDescription = ''; // Clear the file description input
+            this.errorOccurred = false;
+        },
+        error => {
+          // Handle the error response from the backend
+          console.error('Error adding file:', error);
+          this.errorOccurred = true;
+        }
+      );
+
+    } else {
+      // Set the error state to true
+      this.errorOccurred = true;
     }
   }
 
@@ -98,13 +138,30 @@ export class DoctorPageMedicalhistoryComponent {
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
     if (files.length > 0) {
-      this.newFile = files[0].toString();
+      this.selectedFile = files[0];
+      this.newFile = this.selectedFile.name;
+      // You can also save the selectedFile object for further processing if needed
     }
-  }
 
+    
+  }
+  downloadFile(filePath: string) {
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = filePath.substring(filePath.lastIndexOf('\\') + 1);
+    link.click();
+  }
+  
   viewFile(file: string) {
-    console.log('Viewing file:', file);
-    // Implement logic to open/view the file
+    const filePath = this.fixMedicalHistoriesPath(file);
+    console.log('Viewing file:', filePath);
+    window.open(filePath, '_blank');
+  }
+  
+
+
+  goBackToDoctorView(){
+    this.router.navigate(['/doctor-page']);
   }
 
 }

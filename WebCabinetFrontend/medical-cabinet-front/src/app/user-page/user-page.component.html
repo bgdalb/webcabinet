@@ -9,7 +9,8 @@
 
 <body>
     <app-home-topbar></app-home-topbar>
-    <app-user-page-navigationbar></app-user-page-navigationbar>
+    <app-user-page-navigationbar (viewChanged)="handleViewChanged($event)"></app-user-page-navigationbar>
+    <div *ngIf="!showMedicalHistoryForm">
     <div *ngIf="!appointmentSent">
         <app-user-page-form (doctorServiceSelected)="userFormDoctorServiceSelected($event)"></app-user-page-form>
         <app-user-page-calendar (appointmentSent)="handleAppointmentSent()" *ngIf="showCalendar" [selectedDoctor]="selectedDoctor" [selectedService]="selectedService"></app-user-page-calendar>
@@ -23,6 +24,10 @@
           </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="showMedicalHistoryForm">
+    <app-user-page-medicalhistory></app-user-page-medicalhistory>
+  </div>
 
 </body>
 

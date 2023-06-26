@@ -150,6 +150,31 @@ namespace MedicalCabinetBusinessLogic.Services
 
         }
 
+
+        public UserIDandEmailDTO GetUserEmailAndIdByPatientId(long PatientId) 
+        {
+            if (PatientId == null) return null;
+
+            var userId = unitOfWork.Patients.GetUserIDbyPatientID(PatientId);
+
+            var user = unitOfWork.Users.GetUserById(userId);
+
+            if (user != null)
+            {
+                var returnUser = new UserIDandEmailDTO
+                {
+                    UserId = user.UserId,
+                    Email = user.Email,
+
+                };
+
+                return returnUser;
+            }
+
+
+            return null;
+        }
+
     }
 }
 

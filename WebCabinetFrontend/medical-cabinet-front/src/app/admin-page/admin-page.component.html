@@ -10,9 +10,22 @@
 <body>
     
     <app-home-topbar></app-home-topbar>
-    <app-admin-page-navigationbar></app-admin-page-navigationbar>
-    <app-admin-page-patientview></app-admin-page-patientview>
+    <app-admin-page-navigationbar (viewChanged)="handleViewChange($event)" ></app-admin-page-navigationbar>
+    <ng-container *ngIf="currentView === 'patients'">
+        <app-admin-page-patientview></app-admin-page-patientview>
+    </ng-container>
 
+    <ng-container *ngIf="currentView === 'doctors'">
+        <app-admin-page-doctorview></app-admin-page-doctorview>
+    </ng-container>
+
+    <ng-container *ngIf="currentView === 'services'">
+        <app-admin-page-serviceview></app-admin-page-serviceview>
+    </ng-container>
+
+    <ng-container *ngIf="currentView === 'appointments'">
+        <app-admin-page-appointmentview></app-admin-page-appointmentview>
+    </ng-container>
 </body>
 
 

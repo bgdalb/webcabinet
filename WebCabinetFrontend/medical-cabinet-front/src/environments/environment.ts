@@ -5,5 +5,5 @@ export const environment = {
     doctor_images: 'http://localhost:3000/Doctors',
     service_images: 'http://localhost:3000/Services',
     patient_images: 'http://localhost:3000/Patients',
-    user_images: 'http://localhost:3000'
+    user_files: 'http://localhost:3000'
   };

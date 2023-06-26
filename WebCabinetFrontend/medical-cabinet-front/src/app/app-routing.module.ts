@@ -11,6 +11,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminPageEditpatientComponent } from './admin-page-editpatient/admin-page-editpatient.component';
 import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
 import { RoleGuard } from './roleguard.service';
+import { AdminPageAddpatientComponent } from './admin-page-addpatient/admin-page-addpatient.component';
 
 
 const routes: Routes = [
@@ -21,9 +22,12 @@ const routes: Routes = [
   { path: 'user-page', component: UserPageComponent, canActivate: [RoleGuard], data: { allowedRoles: [1] } },
   { path: 'doctor-page', component: DoctorPageComponent, canActivate: [RoleGuard], data: { allowedRoles: [2] } },
   { path: 'admin-page', component: AdminPageComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] } },
-  { path: 'medical-history/:id', component: DoctorPageMedicalhistoryComponent },
-  { path: 'edit-patient/:id', component: AdminPageEditpatientComponent},
-  { path: 'registration-success', component: RegistrationSuccessComponent}
+  { path: 'medical-history/:id', component: DoctorPageMedicalhistoryComponent, canActivate: [RoleGuard], data: { allowedRoles: [2] } },
+  { path: 'add-patient', component: AdminPageAddpatientComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] } },
+  { path: 'edit-patient/:id', component: AdminPageEditpatientComponent },
+  { path: 'registration-success', component: RegistrationSuccessComponent},
+  { path: '**', component: HomeComponent },  // Wildcard route for a 404 page
+
 ];
 
 @NgModule({

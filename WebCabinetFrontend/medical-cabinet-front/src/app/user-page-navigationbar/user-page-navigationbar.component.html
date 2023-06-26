@@ -12,12 +12,12 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
             
-            <a (click)="scrollToSection('appointmentform')" class="nav-item nav-link custom-link">Programează-te</a>
-            <a (click)="scrollToSection('appointmentform')" class="nav-item nav-link custom-link">Vezi istoricul medical</a>
+            <a (click)="switchToAppointmentForm()" class="nav-item nav-link custom-link">Programează-te</a>
+            <a (click)="switchToMedicalHistory()" class="nav-item nav-link custom-link">Vezi istoricul medical</a>
         </div>
 
         <div class="d-flex align-items-center ms-3">
-            <img [src]="picturePath" alt="Profile Photo" class="profile-photo me-2 rounded-circle" width="42" height="54">
+            <img [src]="picturePath" alt="Profile Photo" class="profile-photo me-2 rounded-circle img-fluid" width="40" height="40">
             <span class="patient-name">{{patient.familyName}} {{patient.name}}</span>
         </div>
 

@@ -6,16 +6,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent {
+
+  
   selectedDoctor!: Doctor;
   selectedService!: Service;
   showCalendar: boolean = false;
   appointmentSent: boolean = false;
+  selectedPatient! : Patient;
+  showMedicalHistoryForm: boolean = false;
 
-  userFormDoctorServiceSelected(data: { doctor: Doctor, service: Service }) {
+
+  handleViewChanged(data: {showMedicalHistoryForm: boolean}) {
+    this.showMedicalHistoryForm = data.showMedicalHistoryForm;
+    this.showCalendar = false;
+  }
+
+  userFormDoctorServiceSelected(data: { doctor: Doctor, service: Service, }) {
     this.selectedDoctor = data.doctor;
     this.selectedService = data.service;
     this.showCalendar = true;
   }
+
+
   
   handleAppointmentSent() {
     this.appointmentSent = true;
@@ -48,4 +60,15 @@ interface Doctor
   doctorTitle : string,
   picturePath : string
 
+}
+
+interface Patient {
+  patientId?: number;
+  familyName?: string;
+  name?: string;
+  telephone?: string;
+  cnp?: string;
+  dateOfBirth?: Date;
+  picturePath?: string;
+  userId?: number;
 }

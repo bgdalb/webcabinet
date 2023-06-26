@@ -52,5 +52,14 @@ namespace MedicalCabinetDataLayer.Repositories
         {
             return GetMedicalHistoryRecords().ToList();
         }
+
+        public List<MedicalHistory> GetMedicalHistoriesByPatientId(long patientId)
+        {
+            var result = dbContext.MedicalHistories
+               .Where(mh => mh.PatientId == patientId)
+               .ToList();
+
+            return result;
+        }
     }
 }

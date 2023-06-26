@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ScrollService } from '../scroll.service';
 import { CustomMessages } from 'src/utilities/custom_messages';
 import { SharedDeviceService } from '../shared-device.service';
@@ -13,12 +13,25 @@ import { environment } from 'src/environments/environment';
 })
 export class UserPageNavigationbarComponent {
 
+  @Output() viewChanged: EventEmitter<any> = new EventEmitter<{ showMedicalHistoryForm : boolean }>();
+
+
   patient:any;
   picturePath: any;
   constructor(private scrollService: ScrollService, private sharedDeviceService: SharedDeviceService, private patientService: PatientService) {
     
 
   }
+  
+  switchToAppointmentForm() {
+    this.viewChanged.emit({ showMedicalHistoryForm: false });
+  }
+  
+  switchToMedicalHistory() {
+    this.viewChanged.emit({ showMedicalHistoryForm: true });
+  }
+
+
 
   async ngOnInit(){
 
@@ -30,8 +43,8 @@ export class UserPageNavigationbarComponent {
     const startIndex = filePath.lastIndexOf("\\Users\\");
     const extractedPath = filePath.substring(startIndex);
     const correctedPath = extractedPath.replace(/\\/g, "/");
-    console.log(environment.user_images+correctedPath);
-    this.picturePath =environment.user_images+correctedPath;
+    console.log(environment.user_files+correctedPath);
+    this.picturePath =environment.user_files+correctedPath;
 
   }
 

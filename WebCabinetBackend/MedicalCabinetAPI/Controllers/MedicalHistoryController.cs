@@ -1,5 +1,6 @@
 ﻿using MedicalCabinetBusinessLogic.DTOs;
 using MedicalCabinetBusinessLogic.Services;
+using MedicalCabinetDataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace MedicalCabinetAPI.Controllers
         }
 
         [HttpPost("/add-medicalhistory")]
-        public IActionResult AddMedicalHistory([FromBody] MedicalHistoryAddDTO payload)
+        public IActionResult AddMedicalHistory([FromForm] MedicalHistoryAddDTO payload)
         {
             var result = medicalHistoryService.AddMedicalHistory(payload);
 
@@ -28,6 +29,22 @@ namespace MedicalCabinetAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("/get-medicalhistory-by-patientId/{patientId}")]
+        public ActionResult<List<MedicalHistory>> GetMedicalHistoriesByPatientId(long patientId) 
+        {
+            var result = medicalHistoryService.GetMedicalHistoriesByPatientId(patientId);
+
+            if (result == null)
+            {
+                return BadRequest("No medical histories for this patient.");
+            }
+
+            return Ok(result);
+
+        }
+
+
 
         // Add other actions for medical history entity as needed
     }

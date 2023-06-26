@@ -1,4 +1,5 @@
 ﻿using MedicalCabinetDataLayer.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +18,7 @@ namespace MedicalCabinetBusinessLogic.DTOs
         [Required]
         public string? FileDescription { get; set; }
         [Required]
-        public string? FilePath { get; set; }
+        public IFormFile? File { get; set; }
 
     }
 }

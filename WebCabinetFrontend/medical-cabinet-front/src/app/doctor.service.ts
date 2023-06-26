@@ -16,6 +16,10 @@ export class DoctorService {
     return this.http.get<any[]>(this.apiUrl+'/get-all-doctors');
   }
 
+  getDoctorByUserID(id: number): Observable<any>{
+    return this.http.get<any>(this.apiUrl+'/get-doctor-by-userid'+'/'+id);
+  }
+
   
 
 }
