@@ -71,6 +71,9 @@ export class DoctorPageMedicalhistoryComponent {
     const extractedPath = filePath.substring(startIndex);
     const correctedPath = extractedPath.replace(/\\/g, "/");
     const picturePath = environment.user_files + correctedPath;
+
+    const cacheBuster = Date.now().toString();
+    const updatedPicturePath = picturePath + `?v=${cacheBuster}`;
   
     console.log(picturePath);
   

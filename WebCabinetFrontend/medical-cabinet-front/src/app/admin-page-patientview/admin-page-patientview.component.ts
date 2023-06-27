@@ -47,6 +47,10 @@ export class AdminPagePatientviewComponent {
     const correctedPath = extractedPath.replace(/\\/g, "/");
     const picturePath = environment.user_files + correctedPath;
   
+      // Append cache-busting query parameter
+    const cacheBuster = Date.now().toString();
+    const updatedPicturePath = picturePath + `?v=${cacheBuster}`;
+
     console.log(picturePath);
   
     return picturePath;
@@ -80,9 +84,16 @@ export class AdminPagePatientviewComponent {
     console.log('Updating patient:', patient);
   }
 
-  deletePatient(patient: Patient) {
-    // Implement logic to delete the patient from the database
-    console.log('Deleting patient:', patient);
+  async deletePatient(userPatient: any) {
+    try {
+      // Delete the patient from the database
+      await firstValueFrom(this.patientService.deletePatientByPatientId(userPatient.patientId));
+  
+      // Remove the deleted patient from the patients array
+      this.patients = this.patients.filter(patient => patient.patientId !== userPatient.patientId);
+    } catch (error) {
+      console.error('Error deleting patient:', error);
+    }
   }
 }
 

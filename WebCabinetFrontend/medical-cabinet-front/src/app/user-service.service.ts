@@ -53,6 +53,13 @@ export class UserServiceService {
     return this.http.get<any>(url+'/'+patientId);
   }
 
+  getUserEmailAndIdByDoctorId(doctorId: number): Observable<any>
+  {
+    const url = `${this.apiUrl}/get-useremailandid-by-doctorId`;
+    return this.http.get<any>(url+'/'+doctorId);
+  }
+
+
 
 
 }

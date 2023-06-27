@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { SharedDeviceService } from '../shared-device.service';
+import { DoctorService } from '../doctor.service';
+import { UserServiceService } from '../user-service.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-admin-page-doctorview',
@@ -10,48 +14,51 @@ import { environment } from 'src/environments/environment';
 export class AdminPageDoctorviewComponent {
   
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,  private sharedDeviceService: SharedDeviceService,  private doctorService: DoctorService, private userService: UserServiceService) {}
 
-  filteredDoctors: Doctor[] | null = null;
-  doctors: Doctor[] = [
-    {
-      id: 1,
-      photo: (environment.doctor_images +'/doctor-1.jpg'),
-      name: 'John',
-      surname: 'Doe',
-      email: 'john.doe@example.com',
-      phoneNumber: '1234567890',
-    },
-    {
-      id: 2,
-      photo: (environment.doctor_images +'/doctor-2.jpg'),
-      name: 'Jane',
-      surname: 'Smith',
-      email: 'jane.smith@example.com',
-      phoneNumber: '0987654321',
-    },
-    {
-      id: 3,
-      photo: (environment.doctor_images +'/doctor-3.jpg'),
-      name: 'Alice',
-      surname: 'Johnson',
-      email: 'alice.johnson@example.com',
-      phoneNumber: '9876543210',
-    },
-
-    {
-      id: 4,
-      photo: (environment.doctor_images +'/doctor-3.jpg'),
-      name: 'Alice',
-      surname: 'Johnson',
-      email: 'alice.johnson@example.com',
-      phoneNumber: '9876543210',
-    },
-
-    // Add more patients here...
+  filteredDoctors: any[] | null = null;
+  doctors: any[] = [
   ];
 
 
+
+  
+
+  async ngOnInit(){
+
+    const user = this.sharedDeviceService.getUser();
+    
+    this.doctors = await firstValueFrom(this.doctorService.getAllDoctors());
+    console.log(this.doctors)
+    for (const doctor of this.doctors) {
+      const filePath = doctor.picturePath;
+      doctor.picturePath = this.fixPicturePath(filePath);
+      const doctorUserData = await firstValueFrom(this.userService.getUserEmailAndIdByPatientId(doctor.doctorId));
+      doctor.userId = doctorUserData.userId;
+      doctor.email = doctorUserData.email;
+      console.log(doctor);
+    }
+
+
+  }
+
+
+  fixPicturePath(initialPath: string): string {
+    const filePath = initialPath;
+  
+    const startIndex = filePath.lastIndexOf("\\Users\\");
+    const extractedPath = filePath.substring(startIndex);
+    const correctedPath = extractedPath.replace(/\\/g, "/");
+    const picturePath = environment.user_files + correctedPath;
+  
+      // Append cache-busting query parameter
+    const cacheBuster = Date.now().toString();
+    const updatedPicturePath = picturePath + `?v=${cacheBuster}`;
+
+    console.log(picturePath);
+  
+    return picturePath;
+  }
 
   filterDoctors(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value;
@@ -65,6 +72,10 @@ export class AdminPageDoctorviewComponent {
   }
 
 
+  addDoctor()
+  {
+
+  }
 
   editDoctor(doctor: Doctor) {
     // Implement logic to navigate to the edit page for the selected patient

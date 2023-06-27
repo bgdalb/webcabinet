@@ -44,6 +44,8 @@ import { RegistrationSuccessComponent } from './registration-success/registratio
 import { RegistrationSuccesBlockComponent } from './registration-succes-block/registration-succes-block.component';
 import { UserPageMedicalhistoryComponent } from './user-page-medicalhistory/user-page-medicalhistory.component';
 import { AdminPageAddpatientComponent } from './admin-page-addpatient/admin-page-addpatient.component';
+import { AdminPageEditdoctorComponent } from './admin-page-editdoctor/admin-page-editdoctor.component';
+import { AdminPageAdddoctorComponent } from './admin-page-adddoctor/admin-page-adddoctor.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,9 @@ import { AdminPageAddpatientComponent } from './admin-page-addpatient/admin-page
     RegistrationSuccessComponent,
     RegistrationSuccesBlockComponent,
     UserPageMedicalhistoryComponent,
-    AdminPageAddpatientComponent
+    AdminPageAddpatientComponent,
+    AdminPageEditdoctorComponent,
+    AdminPageAdddoctorComponent
   ],
   imports: [
     BrowserModule,
