@@ -1,4 +1,5 @@
 ﻿using MedicalCabinetBusinessLogic.Converters;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,9 +15,11 @@ namespace MedicalCabinetBusinessLogic.DTOs
         [Required]
         public string? ServiceName { get; set; }
         [Required]
-        [JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan? EstimatedDuration { get; set; }
         [Required]
         public long? DoctorId { get; set; }
+
+        [Required]
+        public IFormFile? Picture { get; set; }
     }
 }

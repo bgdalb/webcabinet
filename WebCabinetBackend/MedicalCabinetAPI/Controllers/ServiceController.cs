@@ -17,18 +17,7 @@ namespace MedicalCabinetAPI.Controllers
             this.serviceService = serviceService;
         }
 
-        [HttpPost("/add-service")]
-        public IActionResult AddService([FromBody] ServiceAddDTO payload)
-        {
-            var result = serviceService.AddService(payload);
-
-            if (result == null)
-            {
-                return BadRequest("Service cannot be added");
-            }
-
-            return Ok(result);
-        }
+        
 
         [HttpGet("/get-all-services")]
         public ActionResult<List<Service>> GetAll()
@@ -50,6 +39,20 @@ namespace MedicalCabinetAPI.Controllers
 
             return Ok(result);
 
+        }
+
+
+        [HttpPost("/add-service")]
+        public IActionResult AddService([FromForm] ServiceAddDTO payload)
+        {
+            var result = serviceService.AddService(payload);
+
+            if (result == null)
+            {
+                return BadRequest("Service cannot be added");
+            }
+
+            return Ok(result);
         }
         // Add other actions for service entity as needed
     }

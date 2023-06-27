@@ -1,26 +1,31 @@
-<div class="container wow zoomIn">
+<div class="container wow zoomIn mt-2">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="patient-list">
+          <div class="text-center mb-2">
+            <button class="btn btn-success" (click)="addService()">
+              <i class="fas fa-plus"></i> Adaugă serviciu
+            </button>
+          </div>
           <input type="text" class="form-control" placeholder="Caută după nume" (input)="filterServices($event)">
           <div *ngIf="filteredServices; else allServices">
             <div *ngFor="let service of filteredServices" class="card patient-card mb-3">
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="patient-photo">
-                    <img [src]="service.photo" alt="service Photo" class="img-fluid">
+                    <img [src]="service.picturePath" alt="service Photo" class="img-fluid">
                   </div>
                   <div class="patient-details ml-3">
-                    <h4>{{ service.name }}</h4>
-                    <p>Descriere: {{ service.description }}</p>
-    
+                    <h4>{{ service.serviceName }}</h4>
+                    <p>Durată: {{ service.estimatedDuration }}</p>
+                    <p>Doctor: {{ service.doctorName}}</p>
                     <div class="d-flex">
                       <button class="btn btn-primary mr-2" (click)="editService(service)">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Editează
                       </button>
                       <h2>&nbsp;</h2>
                       <button class="btn btn-danger" (click)="deleteService(service)">
-                        <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-trash"></i> Șterge
                       </button>
                     </div>
                   </div>
@@ -34,17 +39,18 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="patient-photo">
-                    <img [src]="service.photo" alt="service Photo" class="img-fluid">
+                    <img [src]="service.picturePath" alt="service Photo" class="img-fluid">
                   </div>
                   <div class="patient-details ml-3">
-                    <h4>{{ service.name }}</h4>
-                    <p>Descriere: {{ service.description }}</p>
+                    <h4>{{ service.serviceName }}</h4>
+                    <p>Durată: {{ service.estimatedDuration}}</p>
+                    <p>Doctor: {{ service.doctorName}}</p>
                     <div class="d-flex">
                       <button class="btn btn-primary mr-4" (click)="editService(service)">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Editează
                       </button>
                       <button class="btn btn-danger" (click)="deleteService(service)">
-                        <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-trash"></i> Șterge
                       </button>
                     </div>
                   </div>

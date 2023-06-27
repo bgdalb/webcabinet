@@ -46,6 +46,8 @@ import { UserPageMedicalhistoryComponent } from './user-page-medicalhistory/user
 import { AdminPageAddpatientComponent } from './admin-page-addpatient/admin-page-addpatient.component';
 import { AdminPageEditdoctorComponent } from './admin-page-editdoctor/admin-page-editdoctor.component';
 import { AdminPageAdddoctorComponent } from './admin-page-adddoctor/admin-page-adddoctor.component';
+import { AdminPageAddserviceComponent } from './admin-page-addservice/admin-page-addservice.component';
+import { AdminPageEditserviceComponent } from './admin-page-editservice/admin-page-editservice.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { AdminPageAdddoctorComponent } from './admin-page-adddoctor/admin-page-a
     UserPageMedicalhistoryComponent,
     AdminPageAddpatientComponent,
     AdminPageEditdoctorComponent,
-    AdminPageAdddoctorComponent
+    AdminPageAdddoctorComponent,
+    AdminPageAddserviceComponent,
+    AdminPageEditserviceComponent
   ],
   imports: [
     BrowserModule,

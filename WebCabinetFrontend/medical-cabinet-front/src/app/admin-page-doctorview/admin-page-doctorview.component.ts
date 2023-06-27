@@ -78,25 +78,25 @@ export class AdminPageDoctorviewComponent {
   }
 
   editDoctor(userDoctor: any): void {
-    // Redirect to the edit page with patient ID
+    // Redirect to the edit page with doctor ID
     
     this.router.navigate(['/edit-doctor', userDoctor.doctorId]);
   }
 
   updateDoctor(doctor: Doctor) {
-    // Implement logic to update the patient's information in the database
+    // Implement logic to update the doctor's information in the database
     console.log('Updating doctor:', doctor);
   }
 
   async deleteDoctor(userDoctor: any) {
     try {
-      // Delete the patient from the database
+      // Delete the doctor from the database
       await firstValueFrom(this.doctorService.deleteDoctorByDoctorId(userDoctor.doctorId));
   
-      // Remove the deleted patient from the patients array
+      // Remove the deleted doctor from the patients array
       this.doctors = this.doctors.filter(doctor => doctor.doctorId !== userDoctor.doctorId);
     } catch (error) {
-      console.error('Error deleting patient:', error);
+      console.error('Error deleting doctor:', error);
     }
   }
 }

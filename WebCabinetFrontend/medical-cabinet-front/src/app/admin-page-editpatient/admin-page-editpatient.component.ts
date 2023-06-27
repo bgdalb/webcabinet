@@ -167,7 +167,7 @@ export class AdminPageEditpatientComponent {
           if (profilePictureFile) {
             formDataSend.append('profilePicture', profilePictureFile);
           }
-                    console.log('Form Data:');
+          console.log('Form Data:');
           formDataSend.forEach((value, key) => {
             console.log(key, value);
           });

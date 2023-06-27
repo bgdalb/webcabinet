@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a class="navbar-brand p-0">
+        <h1 class="m-0 text-primary"><span class="heart-pulse">
+            <i class="fas fa-heartbeat"></i>
+          </span>              
+            {{nameOfTheSite}}</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a  (click)="goBackToAdminPanel()" class="nav-item nav-link custom-link">Înapoi la panoul de control</a>
+            <div class="d-flex align-items-center ms-3">
+          </div>
+        </div>
+    </div>
+  </nav>
+
+  <div class="container" [formGroup]="serviceForm">
+    <div class="row">
+      <h2 class="my-4 text-center">Adaugă serviciu</h2>
+      <div class="col-md-6 offset-md-3 text-center">
+        <div class="card">
+          <img [src]="'https://cdn2.iconfinder.com/data/icons/handy-concept/100/hands-09-512.png'" alt="Service Photo" class="card-img-top rounded-circle mx-auto" style="width: 300px; height: 300px;">
+          <div class="form-group">
+            <label for="fileUpload" class="form-label">Alege o fotografie</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="fileUpload" accept=".jpg, .jpeg, .png" formControlName="profilePicture" (change)="onFileSelected($event)">
+              <label class="custom-file-label" for="fileUpload">{{ serviceForm.get('profilePicture')?.value ? serviceForm.get('profilePicture')?.value.name : 'Selectează fișierul' }}</label>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="serviceForm" (submit)="onSubmit()" class="patient-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Nume</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <div *ngIf="serviceForm.get('name')?.invalid && (serviceForm.get('name')?.dirty || serviceForm.get('name')?.touched)">
+                  <div *ngIf="serviceForm.get('name')?.hasError('required')">Numele este obligatoriu.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="doctor" class="form-label">Doctor</label>
+                <select class="form-control" id="doctor" formControlName="doctorId">
+                  <option *ngFor="let doctor of doctors" [value]="doctor.doctorId">{{doctor.familyName}} {{ doctor.name }}</option>
+                </select>
+                <div *ngIf="serviceForm.get('doctorId')?.invalid && (serviceForm.get('doctorId')?.dirty || serviceForm.get('doctorId')?.touched)">
+                  <div *ngIf="serviceForm.get('doctorId')?.hasError('required')">Este necesară selectarea doctorului</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="duration" class="form-label">Durată (în ore)</label>
+                <select class="form-control" id="duration" formControlName="duration">
+                  <option *ngFor="let hour of hours" [value]="hour">{{ hour }} ore</option>
+                </select>
+                <div *ngIf="serviceForm.get('duration')?.invalid && (serviceForm.get('duration')?.dirty || serviceForm.get('duration')?.touched)">
+                  <div *ngIf="serviceForm.get('duration')?.hasError('required')">Selectarea durației este necesară</div>
+                </div>
+              </div>
+
+
+
+              <button type="submit" class="btn btn-primary btn-lg mt-3">Adaugă serviciu</button>
+              <div *ngIf="showGenericError" class="error-message">A apărut o problemă. Reîncearcă.</div>
+              <div *ngIf="showSuccessMessage" class="error-message">Cererea s-a realizat cu succes.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

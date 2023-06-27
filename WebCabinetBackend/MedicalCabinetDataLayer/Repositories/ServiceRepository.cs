@@ -68,5 +68,8 @@ namespace MedicalCabinetDataLayer.Repositories
             dbContext.Services.RemoveRange(services);
             dbContext.SaveChanges();
         }
+
+
+
     }
 }

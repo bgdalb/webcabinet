@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a class="navbar-brand p-0">
+      <h1 class="m-0 text-primary">
+        <span class="heart-pulse">
+          <i class="fas fa-heartbeat"></i>
+        </span>              
+        {{ nameOfTheSite }}
+      </h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+        <a (click)="goBackToAdminPanel()" class="nav-item nav-link custom-link">Înapoi la panoul de control</a>
+        <div class="d-flex align-items-center ms-3"></div>
+      </div>
+    </div>
+  </nav>
+  

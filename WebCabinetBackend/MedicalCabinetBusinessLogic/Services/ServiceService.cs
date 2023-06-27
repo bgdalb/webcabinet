@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCabinetBusinessLogic.Services
 {
@@ -38,6 +40,33 @@ namespace MedicalCabinetBusinessLogic.Services
 
             };
 
+
+            string picturePath = string.Empty;
+
+            IFormFile profilePicture = payload.Picture;
+            
+            Guid myuuid = Guid.NewGuid();
+            string myuuidAsString = myuuid.ToString();
+
+            if (profilePicture != null && profilePicture.Length > 0)
+            {
+                string fileName = Path.GetFileName(profilePicture.FileName);
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "WebCabinetStorage", "Services", myuuidAsString);
+                string fileExtension = Path.GetExtension(fileName);
+                picturePath = Path.Combine(folderPath, "service_picture" + fileExtension);
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                using (var stream = new FileStream(picturePath, FileMode.Create))
+                {
+                    profilePicture.CopyTo(stream);
+                }
+            }
+
+            service.PicturePath = picturePath;
             unitOfWork.Services.InsertService(service);
             unitOfWork.SaveChanges();
 

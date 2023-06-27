@@ -1,0 +1,52 @@
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    margin: 0;
+    opacity: 0;
+  }
+  
+  .custom-file-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .custom-file-input:focus ~ .custom-file-label {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .custom-file-input:disabled ~ .custom-file-label {
+    background-color: #e9ecef;
+  }
+  
+  .custom-file-label::after {
+    content: 'Selectează fișierul';
+  }
+  
+  .custom-file-input:hover ~ .custom-file-label::after {
+    content: 'Selectează fișierul';
+  }
+  
+  .custom-file-input:valid ~ .custom-file-label::after {
+    content: attr(data-placeholder);
+  }
+  
