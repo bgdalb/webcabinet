@@ -73,5 +73,12 @@ namespace MedicalCabinetDataLayer.Repositories
             dbContext.Appointments.RemoveRange(appointments);
             dbContext.SaveChanges();
         }
+
+        public void DeleteAppointmentsByDoctorId(long doctorId)
+        {
+            var appointments = dbContext.Appointments.Where(a => a.DoctorId == doctorId);
+            dbContext.Appointments.RemoveRange(appointments);
+            dbContext.SaveChanges();
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -20,6 +20,23 @@ export class DoctorService {
     return this.http.get<any>(this.apiUrl+'/get-doctor-by-userid'+'/'+id);
   }
 
+  updateDoctor(formData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/update-doctor`;
+    const headers = new HttpHeaders();
+    // Remove the default Content-Type header
+    headers.delete('Content-Type');
+    return this.http.patch<any>(url, formData, { headers });
+  }
+
+  deleteDoctorByDoctorId(doctorId: number): Observable<any>
+  {
+    const url = `${this.apiUrl}/delete-doctor`+'/'+doctorId;
+    const headers = new HttpHeaders();
+    // Remove the default Content-Type header
+    headers.delete('Content-Type');
+    return this.http.delete<any>(url);
+
+  }
   
 
 }

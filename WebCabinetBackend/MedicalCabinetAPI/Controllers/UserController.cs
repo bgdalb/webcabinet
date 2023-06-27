@@ -114,6 +114,39 @@ namespace MedicalCabinetAPI.Controllers
 
 
 
+        [HttpGet("/get-useremailandid-by-doctorid/{doctorId}")]
+        public ActionResult<UserIDandEmailDTO> GetUserEmailAndIdByDoctorId(long doctorId)
+        {
+
+            var result = userService.GetUserEmailAndIdByDoctorId(doctorId);
+
+            if (result == null)
+            {
+                return BadRequest("No such data.");
+            }
+
+            return Ok(result);
+
+        }
+
+
+        [HttpPost("/register-doctor")]
+        public IActionResult RegisterDoctor([FromForm] DoctorRegisterDTO payload)
+        {
+            // Access the uploaded file through the 'profilePicture' parameter
+            // Save the file or perform any required operations
+
+            var result = userService.RegisterDoctor(payload);
+            if (result == null)
+            {
+                return BadRequest("Doctor cannot be registered.");
+            }
+
+            return Ok(payload);
+        }
+
+
+
 
 
 

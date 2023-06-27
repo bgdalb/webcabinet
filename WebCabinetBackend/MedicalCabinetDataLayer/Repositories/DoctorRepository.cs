@@ -62,5 +62,14 @@ namespace MedicalCabinetDataLayer.Repositories
             return result;
         }
 
+        public long GetUserIDbyDoctorID(long doctorId)
+        {
+            var result = dbContext.Doctors
+                .Where(d => d.DoctorId == doctorId)
+                .FirstOrDefault();
+
+            return (long)result.UserId;
+        }
+
     }
 }

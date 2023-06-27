@@ -1,4 +1,4 @@
-<div class="container wow zoomIn">
+<div class="container wow zoomIn mt-2">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="patient-list">
@@ -7,25 +7,26 @@
               <i class="fas fa-plus"></i> Adaugă doctor
             </button>
           </div>
-          <input type="text" class="form-control" placeholder="Caută după nume" (input)="filterDoctors($event)">
+          <input type="text" class="form-control mb-2" placeholder="Caută după nume" (input)="filterDoctors($event)">
           <div *ngIf="filteredDoctors; else allDoctors">
             <div *ngFor="let doctor of filteredDoctors" class="card patient-card mb-3">
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="patient-photo">
-                    <img [src]="doctor.photo" alt="Doctor Photo" class="img-fluid">
+                    <img [src]="doctor.picturePath" alt="Doctor Photo" class="img-fluid">
                   </div>
                   <div class="patient-details ml-3">
-                    <h4>{{ doctor.name }} {{ doctor.surname }}</h4>
-                    <p>Numar de telefon: {{ doctor.phoneNumber }}</p>
+                    <h4>{{ doctor.familyName }} {{ doctor.name }}</h4>
+                    <p>Numar de telefon: {{ doctor.telephone }}</p>
                     <p>Email: {{ doctor.email }}</p>
-    
+                    <p>Titlul doctorului: {{doctor.doctorTitle}}</p>
                     <div class="d-flex">
                       <button class="btn btn-primary mr-2" (click)="editDoctor(doctor)">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Editează
                       </button>
+                      <h2>&nbsp;</h2>
                       <button class="btn btn-danger" (click)="deleteDoctor(doctor)">
-                        <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-trash"></i> Șterge
                       </button>
                     </div>
                   </div>
@@ -33,25 +34,26 @@
               </div>
             </div>
           </div>
-          
+
           <ng-template #allDoctors>
             <div *ngFor="let doctor of doctors" class="card patient-card mb-3">
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="patient-photo">
-                    <img [src]="doctor.photo" alt="Doctor Photo" class="img-fluid">
+                    <img [src]="doctor.picturePath" alt="Doctor Photo" class="img-fluid">
                   </div>
                   <div class="patient-details ml-3">
-                    <h4>{{ doctor.name }} {{ doctor.surname }}</h4>
-                    <p>Numar de telefon: {{ doctor.phoneNumber }}</p>
+                    <h4>{{ doctor.familyName }} {{ doctor.name }}</h4>
+                    <p>Numar de telefon: {{ doctor.telephone }}</p>
                     <p>Email: {{ doctor.email }}</p>
+                    <p>Titlul doctorului: {{doctor.doctorTitle}}</p>
                     <div class="d-flex">
                       <button class="btn btn-primary mr-4" (click)="editDoctor(doctor)">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Editează
                       </button>
                       <h2>&nbsp;</h2>
                       <button class="btn btn-danger" (click)="deleteDoctor(doctor)">
-                        <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-trash"></i> Șterge
                       </button>
                     </div>
                   </div>

@@ -1,1 +1,116 @@
-<p>admin-page-editdoctor works!</p>
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a class="navbar-brand p-0">
+      <h1 class="m-0 text-primary">
+        <span class="heart-pulse">
+          <i class="fas fa-heartbeat"></i>
+        </span>              
+        {{ nameOfTheSite }}
+      </h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+        <a (click)="goBackToAdminPanel()" class="nav-item nav-link custom-link">Înapoi la panoul de control</a>
+        <div class="d-flex align-items-center ms-3"></div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <div class="row">
+      <h2 class="my-4 text-center">Editează doctor</h2>
+      <div class="col-md-6 offset-md-3 text-center">
+        <div class="card">
+          <img [src]="selectedDoctor.picturePath" alt="Doctor Photo" class="card-img-top rounded-circle mx-auto"
+            style="width: 300px; height: 300px;">
+          <div class="form-group">
+            <label for="fileUpload" class="form-label">Alege o fotografie</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="fileUpload" accept=".jpg, .jpeg, .png" formControlName="profilePicture" 
+                (change)="onFileSelected($event)">
+              <label class="custom-file-label" for="fileUpload">
+                {{ editDoctorForm.get('profilePicture')?.value ? editDoctorForm.get('profilePicture')?.value.name : 'Selectează fișierul' }}
+              </label>
+            </div>
+            
+          </div>
+          <div class="card-body">
+            <form [formGroup]="editDoctorForm" (submit)="onSubmit()" class="patient-form">
+              <div class="form-group">
+                <label for="userId" class="form-label">User ID</label>
+                <input type="text" class="form-control" id="userId" formControlName="userId" readonly>
+              </div>
+              <div class="form-group">
+                <label for="doctorId" class="form-label">Doctor ID</label>
+                <input type="text" class="form-control" id="doctorId" formControlName="doctorId" readonly>
+              </div>
+              <div class="form-group">
+                <label for="name" class="form-label">Nume</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <div *ngIf="editDoctorForm.get('name')?.invalid && (editDoctorForm.get('name')?.dirty || editDoctorForm.get('name')?.touched)">
+                  <div *ngIf="editDoctorForm.get('name')?.hasError('required')">Numele este obligatoriu.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="familyName" class="form-label">Nume de familie</label>
+                <input type="text" class="form-control" id="familyName" formControlName="familyName">
+                <div *ngIf="editDoctorForm.get('familyName')?.invalid && (editDoctorForm.get('familyName')?.dirty || editDoctorForm.get('familyName')?.touched)">
+                  <div *ngIf="editDoctorForm.get('familyName')?.hasError('required')">Numele de familie este obligatoriu.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="title" class="form-label">Titlul doctorului</label>
+                <input type="text" class="form-control" id="title" formControlName="doctorTitle">
+                <div *ngIf="editDoctorForm.get('doctorTitle')?.invalid && (editDoctorForm.get('doctorTitle')?.dirty || editDoctorForm.get('doctorTitle')?.touched)">
+                  <div *ngIf="editDoctorForm.get('doctorTitle')?.hasError('required')">Titlul doctorului este obligatoriu.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="telephone" class="form-label">Număr de telefon</label>
+                <input type="text" class="form-control" id="telephone" formControlName="telephone">
+                <div *ngIf="editDoctorForm.get('telephone')?.invalid && (editDoctorForm.get('telephone')?.dirty || editDoctorForm.get('telephone')?.touched)">
+                  <div *ngIf="editDoctorForm.get('telephone')?.hasError('required')">Numărul de telefon este obligatoriu.</div>
+                  <div *ngIf="editDoctorForm.get('telephone')?.hasError('minlength')">Numărul de telefon trebuie să aibă cel puțin 10 caractere.</div>
+                  <div *ngIf="editDoctorForm.get('telephone')?.hasError('maxlength')">Numărul de telefon trebuie să aibă cel mult 10 caractere.</div>
+                  <div *ngIf="editDoctorForm.get('telephone')?.hasError('pattern')">Numărul de telefon trebuie să înceapă cu '07' și să conțină alte 8 cifre.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="editDoctorForm.get('email')?.invalid && (editDoctorForm.get('email')?.dirty || editDoctorForm.get('email')?.touched)">
+                  <div *ngIf="editDoctorForm.get('email')?.hasError('required')">Email-ul este obligatoriu.</div>
+                  <div *ngIf="editDoctorForm.get('email')?.hasError('email')">Email-ul trebuie să fie într-un format valid.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password" class="form-label">Parolă</label>
+              <br>
+                <label for="password" class="form-label">(lasă necompletat dacă nu dorești să schimbi parola)</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <div *ngIf="editDoctorForm.get('password')?.invalid && (editDoctorForm.get('password')?.dirty || editDoctorForm.get('password')?.touched)">
+                  <div *ngIf="editDoctorForm.get('password')?.hasError('required')">Parola este obligatorie.</div>
+                  <div *ngIf="editDoctorForm.get('password')?.hasError('minlength')">Parola trebuie să conțină cel puțin 6 caractere.</div>
+                </div>
+              </div>
+            
+              
+              <button type="submit" class="btn btn-primary btn-lg mt-3">Salvează schimbările</button>
+              <div *ngIf="showEmailError" class="error-message">Email-ul există deja.</div>
+              <div *ngIf="showGenericError" class="error-message">A apărut o problemă. Reîncearcă.</div>
+              <div *ngIf="showSuccessMessage" class="error-message">Cererea s-a realizat cu succes.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  

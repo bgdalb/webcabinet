@@ -32,6 +32,15 @@ export class UserServiceService {
     return this.http.post<any>(url, formData, { headers });
   }
 
+  registerDoctor(formData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/register-doctor`;
+    const headers = new HttpHeaders();
+    // Remove the default Content-Type header
+    headers.delete('Content-Type');
+    return this.http.post<any>(url, formData, { headers });
+  }
+
+
   checkValidCredentials(email: string, password:string ): Observable<any>
   {
     const url = this.apiUrl + '/valid-credentials/'+ email +'/'+ password;

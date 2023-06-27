@@ -12,6 +12,8 @@ import { AdminPageEditpatientComponent } from './admin-page-editpatient/admin-pa
 import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
 import { RoleGuard } from './roleguard.service';
 import { AdminPageAddpatientComponent } from './admin-page-addpatient/admin-page-addpatient.component';
+import { AdminPageAdddoctorComponent } from './admin-page-adddoctor/admin-page-adddoctor.component';
+import { AdminPageEditdoctorComponent } from './admin-page-editdoctor/admin-page-editdoctor.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
   { path: 'admin-page', component: AdminPageComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] } },
   { path: 'medical-history/:id', component: DoctorPageMedicalhistoryComponent, canActivate: [RoleGuard], data: { allowedRoles: [2] } },
   { path: 'add-patient', component: AdminPageAddpatientComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] } },
-  { path: 'edit-patient/:id', component: AdminPageEditpatientComponent },
+  { path: 'edit-patient/:id', component: AdminPageEditpatientComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] } },
+  { path: 'add-doctor', component: AdminPageAdddoctorComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] }},
+  { path: 'edit-doctor/:id', component: AdminPageEditdoctorComponent, canActivate: [RoleGuard], data: { allowedRoles: [3] } },
   { path: 'registration-success', component: RegistrationSuccessComponent},
   { path: '**', component: HomeComponent },  // Wildcard route for a 404 page
 

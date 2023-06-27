@@ -33,7 +33,7 @@ export class AdminPageDoctorviewComponent {
     for (const doctor of this.doctors) {
       const filePath = doctor.picturePath;
       doctor.picturePath = this.fixPicturePath(filePath);
-      const doctorUserData = await firstValueFrom(this.userService.getUserEmailAndIdByPatientId(doctor.doctorId));
+      const doctorUserData = await firstValueFrom(this.userService.getUserEmailAndIdByDoctorId(doctor.doctorId));
       doctor.userId = doctorUserData.userId;
       doctor.email = doctorUserData.email;
       console.log(doctor);
@@ -64,7 +64,7 @@ export class AdminPageDoctorviewComponent {
     const searchTerm = (event.target as HTMLInputElement).value;
     if (searchTerm) {
       this.filteredDoctors = this.doctors.filter(doctor =>
-        (doctor.name.toLowerCase() + ' ' + doctor.surname.toLowerCase()).includes(searchTerm.toLowerCase())
+        (doctor.name.toLowerCase() + ' ' + doctor.familyName.toLowerCase()).includes(searchTerm.toLowerCase())
       );
     } else {
       this.filteredDoctors = null;
@@ -74,12 +74,13 @@ export class AdminPageDoctorviewComponent {
 
   addDoctor()
   {
-
+    this.router.navigate(['/add-doctor'])
   }
 
-  editDoctor(doctor: Doctor) {
-    // Implement logic to navigate to the edit page for the selected patient
-    console.log('Editing doctor:', doctor);
+  editDoctor(userDoctor: any): void {
+    // Redirect to the edit page with patient ID
+    
+    this.router.navigate(['/edit-doctor', userDoctor.doctorId]);
   }
 
   updateDoctor(doctor: Doctor) {
@@ -87,9 +88,16 @@ export class AdminPageDoctorviewComponent {
     console.log('Updating doctor:', doctor);
   }
 
-  deleteDoctor(doctor: Doctor) {
-    // Implement logic to delete the patient from the database
-    console.log('Deleting doctor:', doctor);
+  async deleteDoctor(userDoctor: any) {
+    try {
+      // Delete the patient from the database
+      await firstValueFrom(this.doctorService.deleteDoctorByDoctorId(userDoctor.doctorId));
+  
+      // Remove the deleted patient from the patients array
+      this.doctors = this.doctors.filter(doctor => doctor.doctorId !== userDoctor.doctorId);
+    } catch (error) {
+      console.error('Error deleting patient:', error);
+    }
   }
 }
 

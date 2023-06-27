@@ -52,6 +52,35 @@ namespace MedicalCabinetAPI.Controllers
 
         }
 
+        [HttpPatch("/update-doctor")]
+        public IActionResult UpdateDoctor([FromForm] DoctorUpdateDTO payload)
+        {
+            // Access the uploaded file through the 'profilePicture' parameter
+            // Save the file or perform any required operations
+
+            var result = doctorService.UpdateDoctor(payload);
+            if (result == null)
+            {
+                return BadRequest("Doctor cannot be updated.");
+            }
+
+            return Ok(payload);
+        }
+
+
+        [HttpDelete("/delete-doctor/{doctorId}")]
+        public IActionResult DeleteDoctor(long doctorId)
+        {
+            var result = doctorService.DeleteDoctor(doctorId);
+            if (result == false)
+            {
+                return BadRequest("Doctor cannot be deleted.");
+            }
+
+            return Ok(result);
+
+
+        }
         // Add other actions for doctor entity as needed
     }
 }

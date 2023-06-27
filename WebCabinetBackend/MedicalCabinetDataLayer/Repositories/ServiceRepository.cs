@@ -61,5 +61,12 @@ namespace MedicalCabinetDataLayer.Repositories
 
             return result;
         }
+
+        public void DeleteServicesByDoctorId(long doctorId)
+        {
+            var services = dbContext.Services.Where(s => s.DoctorId == doctorId);
+            dbContext.Services.RemoveRange(services);
+            dbContext.SaveChanges();
+        }
     }
 }

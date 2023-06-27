@@ -175,6 +175,91 @@ namespace MedicalCabinetBusinessLogic.Services
             return null;
         }
 
+
+
+        public UserIDandEmailDTO GetUserEmailAndIdByDoctorId(long DoctorId)
+        {
+            if (DoctorId == null) return null;
+
+            var userId = unitOfWork.Doctors.GetUserIDbyDoctorID(DoctorId);
+
+            var user = unitOfWork.Users.GetUserById(userId);
+
+            if (user != null)
+            {
+                var returnUser = new UserIDandEmailDTO
+                {
+                    UserId = user.UserId,
+                    Email = user.Email,
+
+                };
+
+                return returnUser;
+            }
+
+
+            return null;
+        }
+
+
+
+        public DoctorRegisterDTO RegisterDoctor(DoctorRegisterDTO payload)
+        {
+            if (payload == null) return null;
+            var user = new User
+            {
+                Email = payload.Email,
+                Password = passwordHashService.HashPassword(payload.Password),
+                RoleId = (long)RoleEnums.DOCTOR,
+            };
+
+            unitOfWork.Users.InsertUser(user);
+            unitOfWork.SaveChanges();
+
+            User doctorUser = unitOfWork.Users.GetUserByEmail(user.Email);
+
+
+            string picturePath = string.Empty;
+
+            IFormFile profilePicture = payload.ProfilePicture;
+
+            if (profilePicture != null && profilePicture.Length > 0)
+            {
+                string fileName = Path.GetFileName(profilePicture.FileName);
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "WebCabinetStorage", "Users", doctorUser.UserId.ToString());
+                string fileExtension = Path.GetExtension(fileName);
+                picturePath = Path.Combine(folderPath, "profile_picture" + fileExtension);
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                using (var stream = new FileStream(picturePath, FileMode.Create))
+                {
+                    profilePicture.CopyTo(stream);
+                }
+            }
+
+
+
+            var doctor = new Doctor
+            {
+                FamilyName = payload.FamilyName,
+                Name = payload.FirstName,
+                Telephone = payload.PhoneNumber,
+                PicturePath = picturePath,
+                UserId = doctorUser.UserId,
+                DoctorTitle = payload.DoctorTitle
+            };
+
+            unitOfWork.Doctors.InsertDoctor(doctor);
+            unitOfWork.SaveChanges();
+
+            return payload;
+
+        }
+
     }
 }
 
